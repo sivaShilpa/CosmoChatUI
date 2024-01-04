@@ -199,6 +199,12 @@ const AllStyles = {
     display: 'flex', 
     flexDirection: 'row', 
     justifyContent: 'space-between',
+    padding: '24px 0',
+  }, 
+  endedChatsBody: {
+    display: 'flex',
+    flexDirection: 'column', 
+    gap: '24px', 
   }
 };
 

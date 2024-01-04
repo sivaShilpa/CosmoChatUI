@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Images from '../../constants/images';
 import AllStyles from '../../styles/home';
 import api from '../../api/endedChats';
-import ChatHistory from '../ChatHistory';
+import ChatHistory from '../../components/ChatHistory';
 
 function Home() {
   const [endedChats, setEndedChats] = useState([]);
@@ -73,10 +73,11 @@ function Home() {
         <Grid style={{ ...AllStyles.endedChats }}>Ended Chats: </Grid>
         <Grid><Link style={{ ...AllStyles.seeAllLink }} href="/endedChats">See All</Link></Grid>
       </Grid>
-      
+      <Grid style={{ ...AllStyles.endedChatsBody }}>
         {endedChats.map(el=>
             <ChatHistory key={el.id} id={el.id} date={el.date} lasttext={el.lasttext} />
         )}
+      </Grid>
     </Grid>
     
   );
