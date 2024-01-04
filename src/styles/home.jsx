@@ -205,7 +205,18 @@ const AllStyles = {
     display: 'flex',
     flexDirection: 'column', 
     gap: '24px', 
-  }
+  }, 
+  startAnotherChatButtonGrid: {
+    display: 'flex',
+    padding: '24px 24px 36px 24px',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '24px',
+    borderRadius: '24px 24px 0px 0px',
+    border: '1px solid var(--Greyscale-100, #F5F5F5)',
+    background: 'var(--Others-White, #FFF)',
+  },
 };
 
 export default AllStyles;

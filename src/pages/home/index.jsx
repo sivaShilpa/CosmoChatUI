@@ -8,15 +8,14 @@ import ChatHistory from '../../components/ChatHistory';
 
 function Home() {
   const [endedChats, setEndedChats] = useState([]);
+  const [activeChats, setActiveChats] = useState([]);
 
   useEffect(()=>{
       const fetchEndedChats = async () => {
       try{
           const response = await api.get('/endedChats');
-          setEndedChats(response.data);
-          console.log("response", response.data);
-          console.log("conversations", endedChats);
-      }catch(err){
+          setEndedChats(response.data.reverse());
+        }catch(err){
           if(err.response){
               console.log(err.response.data);
               console.log(err.response.status);
@@ -29,8 +28,26 @@ function Home() {
       fetchEndedChats();
   }, [])
 
+  useEffect(()=>{
+      const fetchActiveChats = async () => {
+      try{
+          const response = await api.get('/activeChats');
+          setActiveChats(response.data);
+      }catch(err){
+          if(err.response){
+              console.log(err.response.data);
+              console.log(err.response.status);
+              console.log(err.response.headers);
+          }else{
+              console.log(err);
+          }        
+      }
+      }
+      fetchActiveChats();
+  }, [])
+
   return (
-    endedChats.length===0 ? 
+    activeChats.length===0 && endedChats.length===0 ? 
      <Grid style={{ ...AllStyles.homeBody }}>
       <Grid style={{ ...AllStyles.homeRex }}>
         <img src={Images.HomRex} alt="homeRex" />
@@ -60,7 +77,7 @@ function Home() {
         </Typography>
       </Grid>
       <Grid>
-        <Link style={{ ...AllStyles.startChatButton }} href="/chatHistory">
+        <Link style={{ ...AllStyles.startChatButton }} href="/chat">
           <Typography style={{ ...AllStyles.startChatButtonText }}>
             Start Chat With ReX
           </Typography>
@@ -70,13 +87,28 @@ function Home() {
     :
     <Grid>
       <Grid style={{ ...AllStyles.endedChatsTitle }}>
-        <Grid style={{ ...AllStyles.endedChats }}>Ended Chats: </Grid>
+        <Grid style={{ ...AllStyles.endedChats }}>Active Chats </Grid>
+      </Grid>
+      <Grid style={{ ...AllStyles.endedChatsBody }}>
+        {activeChats.map(el=>
+            <ChatHistory key={el.id} id={el.id} date={el.date} lasttext={el.lasttext} ended='false' />
+        )}
+      </Grid>
+      <Grid style={{ ...AllStyles.endedChatsTitle }}>
+        <Grid style={{ ...AllStyles.endedChats }}>Ended Chats </Grid>
         <Grid><Link style={{ ...AllStyles.seeAllLink }} href="/endedChats">See All</Link></Grid>
       </Grid>
       <Grid style={{ ...AllStyles.endedChatsBody }}>
         {endedChats.map(el=>
-            <ChatHistory key={el.id} id={el.id} date={el.date} lasttext={el.lasttext} />
+            <ChatHistory key={el.id} id={el.id} date={el.date} lasttext={el.lasttext} ended='true' />
         )}
+      </Grid>
+      <Grid style={{ ...AllStyles.startAnotherChatButtonGrid }}>
+        <Link style={{ ...AllStyles.startChatButton }} href="/chat">
+          <Typography style={{ ...AllStyles.startChatButtonText }}>
+            Start Another Chat With ReX
+          </Typography>
+        </Link>
       </Grid>
     </Grid>
     

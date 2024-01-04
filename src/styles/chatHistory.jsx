@@ -22,6 +22,7 @@ const chatHistoryStyles = {
         gap: '8px', 
         display: 'flex', 
         flexDirection: 'column', 
+        width: '100%', 
     }, 
     body: {
         color: 'var(--Greyscale-700, #616161)',
