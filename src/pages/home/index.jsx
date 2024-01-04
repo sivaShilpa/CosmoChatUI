@@ -2,20 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Link, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 import Images from '../../constants/images';
-import AllStyles from '../../styles';
-import api from '../../api/conversations';
+import AllStyles from '../../styles/home';
+import api from '../../api/endedChats';
 import ChatHistory from '../ChatHistory';
 
 function Home() {
-  const [conversations, setConversations] = useState([]);
+  const [endedChats, setEndedChats] = useState([]);
 
   useEffect(()=>{
-      const fetchConversations = async () => {
+      const fetchEndedChats = async () => {
       try{
-          const response = await api.get('/conversations');
-          setConversations(response.data);
+          const response = await api.get('/endedChats');
+          setEndedChats(response.data);
           console.log("response", response.data);
-          console.log("conversations", conversations);
+          console.log("conversations", endedChats);
       }catch(err){
           if(err.response){
               console.log(err.response.data);
@@ -26,11 +26,11 @@ function Home() {
           }        
       }
       }
-      fetchConversations();
+      fetchEndedChats();
   }, [])
 
   return (
-    conversations.length===0 ? 
+    endedChats.length===0 ? 
      <Grid style={{ ...AllStyles.homeBody }}>
       <Grid style={{ ...AllStyles.homeRex }}>
         <img src={Images.HomRex} alt="homeRex" />
@@ -68,8 +68,13 @@ function Home() {
       </Grid>
     </Grid>
     :
-    <Grid>Here are your previous chats: 
-        {conversations.map(el=>
+    <Grid>
+      <Grid style={{ ...AllStyles.endedChatsTitle }}>
+        <Grid style={{ ...AllStyles.endedChats }}>Ended Chats: </Grid>
+        <Grid><Link style={{ ...AllStyles.seeAllLink }} href="/endedChats">See All</Link></Grid>
+      </Grid>
+      
+        {endedChats.map(el=>
             <ChatHistory key={el.id} id={el.id} date={el.date} lasttext={el.lasttext} />
         )}
     </Grid>

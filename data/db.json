@@ -1,5 +1,5 @@
 {
-    "conversations": [
+    "endedChats": [
         { 
             "id": 1, 
             "date": "Dec 18th, 2023", 
@@ -14,11 +14,14 @@
             "id": 3, 
             "date": "Dec 19th, 2023", 
             "lasttext": "Product management in tech is a vibrant field."
-        },
+        }
+    ],
+    "activeChats": [ 
         {
-            "id": 4,
+            "id": 1,
             "date": "Jan 3rd, 2024",
             "lasttext": "Hello Andrew, I am ReX. 😁"
         }      
-    ]
+    ],
+    "messages": []
 }

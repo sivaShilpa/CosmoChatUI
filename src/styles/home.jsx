@@ -175,6 +175,31 @@ const AllStyles = {
       textDecoration: 'none',
     },
   },
+  endedChats: {
+    color: 'var(--Greyscale-900, #212121)',
+    fontFamily: 'Satoshi',
+    fontSize: '20px',
+    fontStyle: 'normal',
+    fontWeight: 700,
+    lineHeight: '120%',
+    textAlign: 'left',
+  },
+  seeAllLink: {
+    color: 'var(--Primary-500, #6949FF)',
+    textAlign: 'right',
+    fontFamily: 'Satoshi',
+    fontSize: '16px',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    lineHeight: '140%',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+  }, 
+  endedChatsTitle: {
+    display: 'flex', 
+    flexDirection: 'row', 
+    justifyContent: 'space-between',
+  }
 };
 
 export default AllStyles;

@@ -1,6 +1,6 @@
 import { Grid, Link } from '@mui/material';
 import React from 'react';
-import AllStyles from '../../styles';
+import AllStyles from '../../styles/home';
 import Images from '../../constants/images';
 
 function Navigation() {
