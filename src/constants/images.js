@@ -4,6 +4,9 @@ import SettingsIcon from '../assets/SettingsIcon.png';
 import HomeRex from '../assets/RexHome.png';
 import Ellipse from '../assets/Ellipse.png';
 import Typing from '../assets/typing.png'; 
+import BackArrow from '../assets/backArrow.png';
+import Search from '../assets/Search.png';
+import Options from '../assets/Options.png';
 
 const Images = {
   NavRex: NavigationRex,
@@ -12,6 +15,9 @@ const Images = {
   HomRex: HomeRex,
   Ell: Ellipse,
   Typing: Typing,
+  BackArrow: BackArrow,
+  Search: Search,
+  Options: Options,
 };
 
 export default Images;
