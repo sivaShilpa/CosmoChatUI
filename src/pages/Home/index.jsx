@@ -98,7 +98,7 @@ function Home() {
             Start a conversation with ReX right now!
           </Typography>
         </Grid>
-        <Grid>
+        <Grid style={{ textAlign: 'center' }}>
           <Link style={{ ...AllStyles.startChatButton }} href="/chat">
             <Typography style={{ ...AllStyles.startChatButtonText }}>
               Start Chat With ReX
