@@ -30,7 +30,7 @@ function Home() {
     "Nov",
     "Dec",
   ];
-  let session = { id: 0, date: "", chat: [], isChatEnded: false };
+  let session = { id: 0, date: "", chats: [], isChatEnded: false };
 
   useEffect(() => {
     const fetchSessions = async () => {
@@ -58,20 +58,20 @@ function Home() {
     const day = date.getDate();
     const year = date.getFullYear();
     const formattedDate = months[month] + " " + day + ", " + year;
-    const conv = [{ ReX: reXIntro }];
+    const chat = [{ ReX: reXIntro }];
     const isSessionEnded = false;
     
     session = {
       id: id,
       date: formattedDate,
-      chat: conv,
+      chats: chat,
       isSessionEnded: isSessionEnded,
     };
     try {
       const response = await api.post("/sessions", session);
       const allSessions = [...sessions, response.data];
       setSessions(allSessions);
-      navigator(`/chat/${id}`)
+      navigator(`/chats/${id}`)
     } catch (err) {
       console.log(`Error: ${err.message}`);
     }
@@ -104,8 +104,7 @@ function Home() {
           </Grid>
           <Grid>
             <Typography style={{ ...AllStyles.message }}>
-              {" "}
-              Receive Career Help From ReX!{" "}
+              Receive Career Help From ReX!
             </Typography>
           </Grid>
           <Grid>
@@ -130,21 +129,22 @@ function Home() {
             <Grid style={{ ...AllStyles.endedChats }}>Active Chats </Grid>
           </Grid>
           <Grid style={{ ...AllStyles.endedChatsBody }}>
-            {sessions.map((el) =>
-              !el.isSessionEnded ? (
+            {sessions.map((session) =>
+              !session.isSessionEnded ? (
                 <ChatHistory
-                  key={el.id}
-                  id={el.id}
-                  date={el.date}
-                  lasttext={
-                    el.chat[el.chat.length - 1].ReX[
-                      el.chat[el.chat.length - 1].ReX.length - 1
-                    ]
+                  key={session.id}
+                  id={session.id}
+                  date={session.date}
+                  lasttext={ session.chats ? 
+                    session.chats[session.chats.length - 1].ReX[
+                      session.chats[session.chats.length - 1].ReX.length - 1
+                    ] : ""
                   }
-                  ended={el.isSessionEnded}
+                  ended={session.isSessionEnded}
                 />
               ) : null
             )}
+            {sessions.map(session => console.log(session.chats))}
           </Grid>
           <Grid style={{ ...AllStyles.endedChatsTitle }}>
             <Grid style={{ ...AllStyles.endedChats }}>Ended Chats </Grid>
@@ -155,30 +155,30 @@ function Home() {
             </Grid>
           </Grid>
           <Grid style={{ ...AllStyles.endedChatsBody }}>
-            {sessions.map((el) => el.isSessionEnded ? (
+            {sessions.map((session) => session.isSessionEnded ? (
                 <ChatHistory
-                  key={el.id}
-                  id={el.id}
-                  date={el.date}
+                  key={session.id}
+                  id={session.id}
+                  date={session.date}session                 
                   lasttext={
-                    el.chat[el.chat.length - 1].ReX[
-                      el.chat[el.chat.length - 1].ReX.length - 1
-                    ]
+                    session.chats ? 
+                    session.chats[session.chats.length - 1].ReX[
+                      session.chats[session.chats.length - 1].ReX.length - 1
+                    ] : ""
                   }
-                  ended={el.isSessionEnded}
+                  ended={session.isSessionEnded}
                 />
               ) : null)}
           </Grid>
           <Grid style={{ ...AllStyles.startAnotherChatButtonGrid }}>
-            <Link
+            <Button
               style={{ ...AllStyles.startChatButton }}
-              href="/chat"
               onClick={handleSubmit}
             >
               <Typography style={{ ...AllStyles.startChatButtonText }}>
                 Start Another Chat With ReX
               </Typography>
-            </Link>
+            </Button>
           </Grid>
         </Grid>
       )}

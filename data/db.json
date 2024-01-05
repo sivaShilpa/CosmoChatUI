@@ -3,7 +3,85 @@
     {
       "id": 1,
       "date": "Jan 5, 2024",
-      "chat": [
+      "chats": [
+        {
+          "ReX": [
+            "Hello Andrew, I am ReX. 😁",
+            "What aspect of your career would you like guidance on?"
+          ]
+        }
+      ],
+      "isSessionEnded": false
+    },
+    {
+      "id": 2,
+      "date": "Jan 5, 2024",
+      "chats": [
+        {
+          "ReX": [
+            "Hello Andrew, I am ReX. 😁",
+            "What aspect of your career would you like guidance on?"
+          ]
+        }
+      ],
+      "isSessionEnded": false
+    },
+    {
+      "id": 3,
+      "date": "Jan 5, 2024",
+      "chats": [
+        {
+          "ReX": [
+            "Hello Andrew, I am ReX. 😁",
+            "What aspect of your career would you like guidance on?"
+          ]
+        }
+      ],
+      "isSessionEnded": false
+    },
+    {
+      "id": 4,
+      "date": "Jan 5, 2024",
+      "chats": [
+        {
+          "ReX": [
+            "Hello Andrew, I am ReX. 😁",
+            "What aspect of your career would you like guidance on?"
+          ]
+        }
+      ],
+      "isSessionEnded": false
+    },
+    {
+      "id": 5,
+      "date": "Jan 5, 2024",
+      "chats": [
+        {
+          "ReX": [
+            "Hello Andrew, I am ReX. 😁",
+            "What aspect of your career would you like guidance on?"
+          ]
+        }
+      ],
+      "isSessionEnded": false
+    },
+    {
+      "id": 6,
+      "date": "Jan 5, 2024",
+      "chats": [
+        {
+          "ReX": [
+            "Hello Andrew, I am ReX. 😁",
+            "What aspect of your career would you like guidance on?"
+          ]
+        }
+      ],
+      "isSessionEnded": false
+    },
+    {
+      "id": 7,
+      "date": "Jan 5, 2024",
+      "chats": [
         {
           "ReX": [
             "Hello Andrew, I am ReX. 😁",

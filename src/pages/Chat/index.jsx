@@ -7,46 +7,68 @@ import ChatStyles from "../../styles/chat";
 import ReXMessage from "../../components/ReXMessage";
 import api from "../../api/sessions";
 import OpenAI from "openai";
+import { useParams } from "react-router-dom";
 
 const Chat = () => {
-  const [userPompt, setUserPrompt] = useState("");
+  const { id } = useParams();
+  const [userPrompt, setUserPrompt] = useState("");
   const [reXReply, setReXReply] = useState("");
-  const [messages, setMessages] = useState([]);
- 
+  const [sessions, setSessions] = useState([]);
+  const [thisSession, setThisSession] = useState({
+    id: id,
+    date: "",
+    chats: [],
+    isChatEnded: false,
+  });
+
   // const openai = new OpenAI({apiKey: OPENAI_API_KEY, dangerouslyAllowBrowser: true});
 
-  useEffect(()=>{
-    const fetchMessages = async () => {
-      try{
-          const response = await api.get('/messages');
-          setMessages(response.data.reverse());
-        }catch(err){
-          if(err.response){
-              console.log(err.response.data);
-              console.log(err.response.status);
-              console.log(err.response.headers);
-          }else{
-              console.log(err);
-          }        
+  useEffect(() => {
+    const fetchSessions = async () => {
+      try {
+        const response = await api.get("/sessions");
+        setSessions(response.data);
+        setThisSession(sessions.filter((session) => session.id == id));
+      } catch (err) {
+        if (err.response) {
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(err);
+        }
       }
-    }
-    fetchMessages();
-  }, [])
+    };
+    fetchSessions();
+  }, []);
+
+  // const thisSession = sessions.find((session) => session.id === thisSessionId);
+  // console.log(thisSession);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // callOpenAIAPI();
-    const conv = [...messages[0].conversation, {user: userPompt, ReX: reXReply}] ;  
+    const updatedThisSessionChat = [
+      ...thisSession[0].chats,
+      { user: userPrompt, ReX: reXReply },
+    ];
     
-    try{
-      const response = await api.post('/messages', conv);
-      const allMessages = [...messages, response.data];
-      setMessages(allMessages);
-      setUserPrompt('');
-    }catch(err){
+    const newSession = {
+      id: id,
+      date: thisSession[0].date,
+      chats: updatedThisSessionChat,
+      isSessionEnded: thisSession[0].isSessionEnded,
+    };
+
+    try {
+      const response = await api.post("/sessions", newSession);
+      const allSessions = [...sessions, response.data];
+      setSessions(allSessions);
+      setUserPrompt("");
+    } catch (err) {
       console.log(`Error: ${err.message}`);
     }
-  }
+  };
 
   async function callOpenAIAPI() {
     const completion = await openai.chat.completions.create({
@@ -61,28 +83,28 @@ const Chat = () => {
           role: "assistant",
           content:
             "Changing jobs can be a big step. Let's start by identifying what you are looking for in a new job. What's important to you? Company culture, job role, salary, location, or growth opportunities?",
-        }
+        },
       ],
       model: "gpt-3.5-turbo",
       max_tokens: 100,
     });
 
-    console.log(completion.choices[0].message.content);
+    // console.log(completion.choices[0].message.content);
     setReXReply(completion.choices[0].message.content);
   }
 
-  
   return (
     <Grid style={{ padding: "24px 24px 48px 24px" }}>
       <Navigation isChat={true} isEndedChats={false} />
       <Grid style={{ ...ChatStyles.textDisplayBackground }}>
         <Grid style={{ padding: "24px 0" }}>
-          <img src={Images.HomRex} alt="ReX" style={{ width: "105px" }} />{" "}
+          <img src={Images.HomRex} alt="ReX" style={{ width: "105px" }} />
         </Grid>
-        <Grid>          
-          { messages[0].conversation.map((el, i) => (
-            <ReXMessage reXMessage={el.ReX} key={i} />
-          ))}
+        <Grid>
+          {thisSession[0] &&
+            thisSession[0].chats.map((chat, i) => (
+              <ReXMessage reXMessage={chat.ReX} key={i} />
+            ))}
         </Grid>
         <Grid style={{ ...ChatStyles.toSendArea }}>
           <Textarea

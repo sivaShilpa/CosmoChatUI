@@ -5,7 +5,7 @@ import Chat from './pages/Chat';
 import EndedChats from './pages/EndedChats';
 
 function App() {
-   return (
+    return (
     <>
       <Routes>
         <Route
@@ -16,7 +16,7 @@ function App() {
         </Route>
         
         <Route
-          path="/chat/:id"
+          path="/chats/:id"
           element={<Chat />}
         >
         </Route>
