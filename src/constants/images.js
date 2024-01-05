@@ -7,6 +7,7 @@ import Typing from '../assets/typing.png';
 import BackArrow from '../assets/backArrow.png';
 import Search from '../assets/Search.png';
 import Options from '../assets/Options.png';
+import SendButton from '../assets/sendButton.png';
 
 const Images = {
   NavRex: NavigationRex,
@@ -18,6 +19,7 @@ const Images = {
   BackArrow: BackArrow,
   Search: Search,
   Options: Options,
+  SendButton: SendButton,
 };
 
 export default Images;
