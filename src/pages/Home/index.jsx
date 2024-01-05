@@ -10,6 +10,25 @@ import Navigation from '../../components/Navigation';
 function Home() {
   const [endedChats, setEndedChats] = useState([]);
   const [activeChats, setActiveChats] = useState([]);
+  const [messages, setMessages] = useState([]);
+
+  useEffect(()=>{
+    const fetchMessages = async () => {
+    try{
+        const response = await api.get('/messages');
+        setMessages(response.data.reverse());
+      }catch(err){
+        if(err.response){
+            console.log(err.response.data);
+            console.log(err.response.status);
+            console.log(err.response.headers);
+        }else{
+            console.log(err);
+        }        
+    }
+    }
+    fetchMessages();
+}, [])
 
   useEffect(()=>{
       const fetchEndedChats = async () => {
@@ -50,7 +69,7 @@ function Home() {
   return (
     <>
       <Navigation isChat={false} isEndedChats={false}/>
-      {activeChats.length===0 && endedChats.length===0 ? 
+      {messages.length === 0 ? 
       <Grid style={{ ...AllStyles.homeBody }}>
         <Grid style={{ ...AllStyles.homeRex }}>
           <img src={Images.HomRex} alt="homeRex" />

@@ -26,6 +26,9 @@ const ChatStyles = {
         display: 'flex',
         flexDirection: 'row',
         gap: '12px',
+        position: 'absolute',
+        bottom: 48,
+        width: '85%',
     },
     textArea: {
         // display: 'flex',
@@ -35,6 +38,7 @@ const ChatStyles = {
         justifyContent: 'center',
         alignItems: 'center',
         // gap: '12px',
+        width: '100%',
         flex: '1 0 0',
         borderRadius: '12px',
         background: 'var(--Greyscale-50, #FAFAFA)',

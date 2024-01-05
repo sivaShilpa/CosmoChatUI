@@ -158,7 +158,7 @@ const AllStyles = {
     ':hover': {
       textDecoration: 'none',
     },
-    width: '100%', 
+    width: '83%', 
   },
   startChatButtonText: {
     width: '100%',
