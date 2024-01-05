@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Link, Typography } from "@mui/material";
+import { Button, Grid, Link, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import Images from "../../constants/images";
 import AllStyles from "../../styles/home";
-import api from "../../api/messages";
+import api from "../../api/sessions";
 import ChatHistory from "../../components/ChatHistory";
 import Navigation from "../../components/Navigation";
+import { useNavigate } from "react-router";
 
 function Home() {
-  const [messages, setMessages] = useState([]);
+  const [sessions, setSessions] = useState([]);
+  const navigator = useNavigate();
+
   const reXIntro = [
     "Hello Andrew, I am ReX. 😁",
     "What aspect of your career would you like guidance on?",
@@ -27,13 +30,13 @@ function Home() {
     "Nov",
     "Dec",
   ];
-  let conversation = { id: 0, date: "", conversation: [], isChatEnded: false };
+  let session = { id: 0, date: "", chat: [], isChatEnded: false };
 
   useEffect(() => {
-    const fetchMessages = async () => {
+    const fetchSessions = async () => {
       try {
-        const response = await api.get("/messages");
-        setMessages(response.data.reverse());
+        const response = await api.get("/sessions");
+        setSessions(response.data.reverse());
       } catch (err) {
         if (err.response) {
           console.log(err.response.data);
@@ -44,40 +47,41 @@ function Home() {
         }
       }
     };
-    fetchMessages();
+    fetchSessions();
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const id = messages.length ? messages[0].id + 1 : 1;
+    const id = sessions.length ? sessions[0].id + 1 : 1;
     const date = new Date();
     const month = date.getMonth();
     const day = date.getDate();
     const year = date.getFullYear();
     const formattedDate = months[month] + " " + day + ", " + year;
     const conv = [{ ReX: reXIntro }];
-    const isChatEnded = false;
-    conversation = {
+    const isSessionEnded = false;
+    
+    session = {
       id: id,
       date: formattedDate,
-      conversation: conv,
-      isChatEnded: isChatEnded,
+      chat: conv,
+      isSessionEnded: isSessionEnded,
     };
-    console.log(conversation);
     try {
-      const response = await api.post("/messages", conversation);
-      const allMessages = [...messages, response.data];
-      setMessages(allMessages);
-      console.log(messages);
+      const response = await api.post("/sessions", session);
+      const allSessions = [...sessions, response.data];
+      setSessions(allSessions);
+      navigator(`/chat/${id}`)
     } catch (err) {
       console.log(`Error: ${err.message}`);
     }
+    
   };
 
   return (
     <>
       <Navigation isChat={false} isEndedChats={false} />
-      {messages.length === 0 ? (
+      {sessions.length === 0 ? (
         <Grid style={{ ...AllStyles.homeBody }}>
           <Grid style={{ ...AllStyles.homeRex }}>
             <img src={Images.HomRex} alt="homeRex" />
@@ -110,15 +114,14 @@ function Home() {
             </Typography>
           </Grid>
           <Grid style={{ textAlign: "center" }}>
-            <Link
+            <Button
               style={{ ...AllStyles.startChatButton }}
-              href="/chat"
               onClick={handleSubmit}
             >
               <Typography style={{ ...AllStyles.startChatButtonText }}>
                 Start Chat With ReX
               </Typography>
-            </Link>
+            </Button>
           </Grid>
         </Grid>
       ) : (
@@ -127,18 +130,18 @@ function Home() {
             <Grid style={{ ...AllStyles.endedChats }}>Active Chats </Grid>
           </Grid>
           <Grid style={{ ...AllStyles.endedChatsBody }}>
-            {messages.map((el) =>
-              !el.isChatEnded ? (
+            {sessions.map((el) =>
+              !el.isSessionEnded ? (
                 <ChatHistory
                   key={el.id}
                   id={el.id}
                   date={el.date}
                   lasttext={
-                    el.conversation[el.conversation.length - 1].ReX[
-                      el.conversation[el.conversation.length - 1].ReX.length - 1
+                    el.chat[el.chat.length - 1].ReX[
+                      el.chat[el.chat.length - 1].ReX.length - 1
                     ]
                   }
-                  ended="false"
+                  ended={el.isSessionEnded}
                 />
               ) : null
             )}
@@ -152,17 +155,17 @@ function Home() {
             </Grid>
           </Grid>
           <Grid style={{ ...AllStyles.endedChatsBody }}>
-            {messages.map((el) => el.isChatEnded ? (
+            {sessions.map((el) => el.isSessionEnded ? (
                 <ChatHistory
                   key={el.id}
                   id={el.id}
                   date={el.date}
                   lasttext={
-                    el.conversation[el.conversation.length - 1].ReX[
-                      el.conversation[el.conversation.length - 1].ReX.length - 1
+                    el.chat[el.chat.length - 1].ReX[
+                      el.chat[el.chat.length - 1].ReX.length - 1
                     ]
                   }
-                  ended="false"
+                  ended={el.isSessionEnded}
                 />
               ) : null)}
           </Grid>

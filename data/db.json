@@ -1,33 +1,9 @@
 {
-  "endedChats": [
-    {
-      "id": 1,
-      "date": "Dec 18, 2023",
-      "lasttext": "Aim to engage with your network weekly."
-    },
-    {
-      "id": 2,
-      "date": "Dec 18, 2023",
-      "lasttext": "I recommend taking a course on agile methodologies to get acquainted with the concepts."
-    },
-    {
-      "id": 3,
-      "date": "Dec 19, 2023",
-      "lasttext": "Product management in tech is a vibrant field."
-    }
-  ],
-  "activeChats": [
-    {
-      "id": 4,
-      "date": "Jan 3, 2024",
-      "lasttext": "Hello Andrew, I am ReX. 😁"
-    }
-  ],
-  "messages": [
+  "sessions": [
     {
       "id": 1,
       "date": "Jan 5, 2024",
-      "conversation": [
+      "chat": [
         {
           "ReX": [
             "Hello Andrew, I am ReX. 😁",
@@ -35,20 +11,7 @@
           ]
         }
       ],
-      "isChatEnded": false
-    },
-    {
-      "id": 2,
-      "date": "Jan 5, 2024",
-      "conversation": [
-        {
-          "ReX": [
-            "Hello Andrew, I am ReX. 😁",
-            "What aspect of your career would you like guidance on?"
-          ]
-        }
-      ],
-      "isChatEnded": false
+      "isSessionEnded": false
     }
   ]
 }

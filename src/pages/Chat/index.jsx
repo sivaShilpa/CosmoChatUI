@@ -5,7 +5,7 @@ import Textarea from "@mui/joy/Textarea";
 import Images from "../../constants/images";
 import ChatStyles from "../../styles/chat";
 import ReXMessage from "../../components/ReXMessage";
-import api from "../../api/messages";
+import api from "../../api/sessions";
 import OpenAI from "openai";
 
 const Chat = () => {
@@ -80,7 +80,7 @@ const Chat = () => {
           <img src={Images.HomRex} alt="ReX" style={{ width: "105px" }} />{" "}
         </Grid>
         <Grid>          
-          { conversation.conversation.map((el, i) => (
+          { messages[0].conversation.map((el, i) => (
             <ReXMessage reXMessage={el.ReX} key={i} />
           ))}
         </Grid>

@@ -10,12 +10,13 @@ function App() {
       <Routes>
         <Route
           path="/"
+          index
           element={<Home />}
         >
         </Route>
         
         <Route
-          path="/chat"
+          path="/chat/:id"
           element={<Chat />}
         >
         </Route>
