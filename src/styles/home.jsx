@@ -37,9 +37,6 @@ const AllStyles = {
     alignItems: 'center',
   },
   homeRex: {
-    // textAlign: 'center',
-    // justifyContent: 'center',
-    // alignItems: 'center',
     zIndex: 100,
     padding: '100px 0',
     // position: 'absolute',
@@ -47,8 +44,6 @@ const AllStyles = {
   greetings: {
     display: 'flex',
     color: 'var(--Greyscale-900, #212121)',
-    // textAlign: 'center',
-    // justifyContent: 'center',
     fontFamily: 'Urbanist',
     fontSize: '32px',
     fontStyle: 'normal',
