@@ -9,16 +9,10 @@ import api from "../../api/messages";
 import OpenAI from "openai";
 
 const Chat = () => {
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
   const [userPompt, setUserPrompt] = useState("");
   const [reXReply, setReXReply] = useState("");
-  let conversation = {id: 0, date: "", conversation: [], isChatEnded: false};
-  // const [conversation, setConversation] = useState();
   const [messages, setMessages] = useState([]);
-  const reXIntro = [
-    "Hello Andrew, I am ReX. 😁",
-    "What aspect of your career would you like guidance on?",
-  ];
+ 
   // const openai = new OpenAI({apiKey: OPENAI_API_KEY, dangerouslyAllowBrowser: true});
 
   useEffect(()=>{
@@ -26,25 +20,6 @@ const Chat = () => {
       try{
           const response = await api.get('/messages');
           setMessages(response.data.reverse());
-          console.log(messages);
-          const id = messages.length ? messages[0].id + 1 : 1;
-          const date = new Date();
-          const month = date.getMonth();          
-          const day = date.getDate();
-          const year = date.getFullYear();
-          const formattedDate = months[month] + " " + day + ", " + year;
-          const conv = [{ReX: reXIntro}];
-          const isChatEnded = false;
-          conversation = { id: id, date: formattedDate, conversation: conv, isChatEnded: isChatEnded };
-          
-          try{
-            const response = await api.post('/messages', conversation);
-            const allMessages = [...messages, response.data];
-            setMessages(allMessages);
-            setUserPrompt('');
-          }catch(err){
-            console.log(`Error: ${err.message}`);
-          }
         }catch(err){
           if(err.response){
               console.log(err.response.data);
@@ -61,17 +36,10 @@ const Chat = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // callOpenAIAPI();
-    const id = messages ? messages[0].id + 1 : 1;
-    const date = new Date();
-    const month = date.getMonth();
-    const day = date.getDate();
-    const year = date.getFullYear();
-    const formattedDate = months[month] + " " + day + ", " + year;
-    const conv = conversation.conversation.length ? [...conversation.conversation, {user: userPompt, ReX: reXReply}] : [{ReX: reXIntro}];
-    const isChatEnded = false;
-    conversation = { id: id, date: formattedDate, conversation: conv, isChatEnded: isChatEnded };
+    const conv = [...messages[0].conversation, {user: userPompt, ReX: reXReply}] ;  
+    
     try{
-      const response = await api.post('/messages', conversation);
+      const response = await api.post('/messages', conv);
       const allMessages = [...messages, response.data];
       setMessages(allMessages);
       setUserPrompt('');
