@@ -1,8 +1,12 @@
-import React from 'react'
+import { Typography, Grid } from '@mui/material';
+import React from 'react';
+import ChatStyles from '../../styles/chat';
 
-const UserMessage = () => {
+const UserMessage = ({userMessage}) => {
   return (
-    <div>UserMessage</div>
+    <Grid style={{ ...ChatStyles.userMessage }}>
+      <Typography style={{ ...ChatStyles.userMessageText }}>{userMessage}</Typography>
+    </Grid>
   )
 }
 

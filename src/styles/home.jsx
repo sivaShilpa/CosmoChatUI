@@ -8,6 +8,8 @@ const AllStyles = {
     alignSelf: 'stretch',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    position: 'sticky',
+    margin: '24px 0',
   },
   navigationRight: {
     display: 'flex',

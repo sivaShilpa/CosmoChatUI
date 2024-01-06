@@ -9,11 +9,12 @@ import api from "../../api/sessions";
 import OpenAI from "openai";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import UserMessage from "../../components/UserMessage";
 
 const Chat = () => {
   const { id } = useParams();
   const [userPrompt, setUserPrompt] = useState("");
-  const [reXReply, setReXReply] = useState("");
+  const [reXReply, setReXReply] = useState("...");
   const [sessions, setSessions] = useState([]);
   const [thisSession, setThisSession] = useState([]);
   const months = [
@@ -40,6 +41,9 @@ const Chat = () => {
         const response = await api.get("/sessions", {
           signal: controller.signal
         });
+
+        handleScroll();
+        window.addEventListener("scroll", handleScroll);        
         if (response && response.data) {setSessions(response.data);
           setThisSession(sessions.filter((session) => session["id"] == id));
           console.log(thisSession);
@@ -53,13 +57,18 @@ const Chat = () => {
           console.log(err);
         }
       }
-      return () => controller?.abort();
+      return () => {
+        controller?.abort();
+        window.removeEventListener("scroll", handleScroll);
+      };
     };
     fetchSessions();
   }, [thisSession]);
 
-  // const thisSession = sessions.find((session) => session.id === thisSessionId);
-  // console.log(thisSession);
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY; // => scroll position
+    console.log(scrollPosition);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -126,7 +135,11 @@ const Chat = () => {
         <Grid>
           { thisSession.length === 0 ? <ReXMessage reXMessage="..." key="loading" /> : 
             thisSession[0] && thisSession[0].chats.map((chat, i) => (
-              <ReXMessage reXMessage={chat.ReX} key={i} />
+              i===0 ? <ReXMessage reXMessage={chat.ReX} key={i} /> :
+              <Grid key={i} >
+                <UserMessage userMessage={chat.user} key={i} />
+                <ReXMessage reXMessage={chat.ReX} key={i} />
+              </Grid>              
             ))}
         </Grid>
         <Grid style={{ ...ChatStyles.toSendArea }}>
