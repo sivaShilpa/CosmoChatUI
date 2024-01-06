@@ -33,9 +33,12 @@ function Home() {
   let session = { id: 0, date: "", chats: [], isChatEnded: false };
 
   useEffect(() => {
+    const controller = new AbortController();
     const fetchSessions = async () => {
       try {
-        const response = await api.get("/sessions");
+        const response = await api.get("/sessions", {
+          signal: controller.signal
+        });
         setSessions(response.data.reverse());
       } catch (err) {
         if (err.response) {
@@ -46,6 +49,7 @@ function Home() {
           console.log(err);
         }
       }
+      return () => controller?.abort();
     };
     fetchSessions();
   }, []);
@@ -144,7 +148,6 @@ function Home() {
                 />
               ) : null
             )}
-            {sessions.map(session => console.log(session.chats))}
           </Grid>
           <Grid style={{ ...AllStyles.endedChatsTitle }}>
             <Grid style={{ ...AllStyles.endedChats }}>Ended Chats </Grid>

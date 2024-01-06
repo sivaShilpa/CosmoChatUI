@@ -5,7 +5,7 @@ const ChatStyles = {
     reXMessage: {
         display: 'flex',
         padding: '16px 24px',
-        width: '300px',
+        width: '250px',
         margin: '0 0 16px 0',
         textAlign: 'left',
         alignItems: 'flex-start',
