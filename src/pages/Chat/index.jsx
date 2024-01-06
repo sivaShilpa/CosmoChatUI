@@ -128,44 +128,42 @@ const Chat = () => {
   return (
     <>
       <Navigation isChat={true} isEndedChats={false} />
-      <Grid style={{ padding: "50px 24px 150px 24px" }}>
-        <Grid style={{ ...ChatStyles.textDisplayBackground }}>
-          <Grid style={{ padding: "24px 0" }}>
-            <img src={Images.HomRex} alt="ReX" style={{ width: "105px" }} />
-          </Grid>
-          <Grid>
-            {thisSession.length === 0 ? (
-              <ReXMessage reXMessage="..." key="loading" />
-            ) : (
-              thisSession[0] &&
-              thisSession[0].chats.map((chat, i) =>
-                i === 0 ? (
+      <Grid style={{ ...ChatStyles.textDisplayBackground }}>
+        <Grid style={{ padding: "24px 0" }}>
+          <img src={Images.HomRex} alt="ReX" style={{ width: "105px" }} />
+        </Grid>
+        <Grid>
+          {thisSession.length === 0 ? (
+            <ReXMessage reXMessage="..." key="loading" />
+          ) : (
+            thisSession[0] &&
+            thisSession[0].chats.map((chat, i) =>
+              i === 0 ? (
+                <ReXMessage reXMessage={chat.ReX} key={"rex" + i} />
+              ) : (
+                <Grid key={i}>
+                  <UserMessage userMessage={chat.user} key={"user" + i} />
                   <ReXMessage reXMessage={chat.ReX} key={"rex" + i} />
-                ) : (
-                  <Grid key={i}>
-                    <UserMessage userMessage={chat.user} key={"user" + i} />
-                    <ReXMessage reXMessage={chat.ReX} key={"rex" + i} />
-                  </Grid>
-                )
+                </Grid>
               )
-            )}
-          </Grid>
-          <Grid style={{ ...ChatStyles.toSendArea }}>
-            <Textarea
-              style={{ ...ChatStyles.textArea }}
-              name="Soft"
-              placeholder="Type a message to ReX ..."
-              variant="soft"
-              onChange={(e) => setUserPrompt(e.target.value)}
+            )
+          )}
+        </Grid>
+        <Grid style={{ ...ChatStyles.toSendArea }}>
+          <Textarea
+            style={{ ...ChatStyles.textArea }}
+            name="Soft"
+            placeholder="Type a message to ReX ..."
+            variant="soft"
+            onChange={(e) => setUserPrompt(e.target.value)}
+          />
+          <Button style={{ ...ChatStyles.sendButton }} onClick={handleSubmit}>
+            <img
+              src={Images.SendButton}
+              alt="send"
+              style={{ ...ChatStyles.sendButtonImage }}
             />
-            <Button style={{ ...ChatStyles.sendButton }} onClick={handleSubmit}>
-              <img
-                src={Images.SendButton}
-                alt="send"
-                style={{ ...ChatStyles.sendButtonImage }}
-              />
-            </Button>
-          </Grid>
+          </Button>
         </Grid>
       </Grid>
     </>

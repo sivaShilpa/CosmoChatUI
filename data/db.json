@@ -82,6 +82,52 @@
         }
       ],
       "isSessionEnded": false
+    },
+    {
+      "id": 4,
+      "date": "Jan 6, 2024",
+      "chats": [
+        {
+          "ReX": [
+            "Hello Andrew, I am ReX. 😁",
+            "What aspect of your career would you like guidance on?"
+          ]
+        },
+        {
+          "user": "I would like to change my career.",
+          "ReX": "..."
+        },
+        {
+          "user": "hello",
+          "ReX": "..."
+        }
+      ],
+      "isSessionEnded": false
+    },
+    {
+      "id": 5,
+      "date": "Jan 6, 2024",
+      "chats": [
+        {
+          "ReX": [
+            "Hello Andrew, I am ReX. 😁",
+            "What aspect of your career would you like guidance on?"
+          ]
+        },
+        {
+          "user": "hello",
+          "ReX": "..."
+        },
+        {
+          "user": "hello",
+          "ReX": "..."
+        },
+        {
+          "user": "hello hello",
+          "ReX": "..."
+        }
+      ],
+      "isSessionEnded": false
     }
   ]
 }
