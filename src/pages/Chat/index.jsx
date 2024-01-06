@@ -31,7 +31,7 @@ const Chat = () => {
     "Nov",
     "Dec",
   ];
-  
+
   // const openai = new OpenAI({apiKey: OPENAI_API_KEY, dangerouslyAllowBrowser: true});
 
   useEffect(() => {
@@ -39,12 +39,13 @@ const Chat = () => {
     const fetchSessions = async () => {
       try {
         const response = await api.get("/sessions", {
-          signal: controller.signal
+          signal: controller.signal,
         });
 
         handleScroll();
-        window.addEventListener("scroll", handleScroll);        
-        if (response && response.data) {setSessions(response.data);
+        window.addEventListener("scroll", handleScroll);
+        if (response && response.data) {
+          setSessions(response.data);
           setThisSession(sessions.filter((session) => session["id"] == id));
           console.log(thisSession);
         }
@@ -66,8 +67,7 @@ const Chat = () => {
   }, [thisSession]);
 
   const handleScroll = () => {
-    const scrollPosition = window.scrollY; // => scroll position
-    console.log(scrollPosition);
+    const scrollPosition = window.scrollY;
   };
 
   const handleSubmit = async (e) => {
@@ -80,17 +80,17 @@ const Chat = () => {
     const year = date.getFullYear();
     const formattedDate = months[month] + " " + day + ", " + year;
 
-   thisSession[0]["chats"] = [
+    thisSession[0]["chats"] = [
       ...thisSession[0].chats,
       { user: userPrompt, ReX: reXReply },
     ];
 
     const updatedSession = {
-      id: id, 
+      id: id,
       date: formattedDate,
       chats: thisSession[0]["chats"],
-      isSessionEnded: thisSession[0]["isSessionEnded"]
-    }
+      isSessionEnded: thisSession[0]["isSessionEnded"],
+    };
 
     try {
       const response = await api.put(`/sessions/${id}`, updatedSession);
@@ -126,40 +126,49 @@ const Chat = () => {
   }
 
   return (
-    <Grid style={{ padding: "24px 24px 48px 24px" }}>
+    <>
       <Navigation isChat={true} isEndedChats={false} />
-      <Grid style={{ ...ChatStyles.textDisplayBackground }}>
-        <Grid style={{ padding: "24px 0" }}>
-          <img src={Images.HomRex} alt="ReX" style={{ width: "105px" }} />
-        </Grid>
-        <Grid>
-          { thisSession.length === 0 ? <ReXMessage reXMessage="..." key="loading" /> : 
-            thisSession[0] && thisSession[0].chats.map((chat, i) => (
-              i===0 ? <ReXMessage reXMessage={chat.ReX} key={i} /> :
-              <Grid key={i} >
-                <UserMessage userMessage={chat.user} key={i} />
-                <ReXMessage reXMessage={chat.ReX} key={i} />
-              </Grid>              
-            ))}
-        </Grid>
-        <Grid style={{ ...ChatStyles.toSendArea }}>
-          <Textarea
-            style={{ ...ChatStyles.textArea }}
-            name="Soft"
-            placeholder="Type a message to ReX ..."
-            variant="soft"
-            onChange={(e) => setUserPrompt(e.target.value)}
-          />
-          <Button style={{ ...ChatStyles.sendButton }} onClick={handleSubmit}>
-            <img
-              src={Images.SendButton}
-              alt="send"
-              style={{ ...ChatStyles.sendButtonImage }}
+      <Grid style={{ padding: "50px 24px 150px 24px" }}>
+        <Grid style={{ ...ChatStyles.textDisplayBackground }}>
+          <Grid style={{ padding: "24px 0" }}>
+            <img src={Images.HomRex} alt="ReX" style={{ width: "105px" }} />
+          </Grid>
+          <Grid>
+            {thisSession.length === 0 ? (
+              <ReXMessage reXMessage="..." key="loading" />
+            ) : (
+              thisSession[0] &&
+              thisSession[0].chats.map((chat, i) =>
+                i === 0 ? (
+                  <ReXMessage reXMessage={chat.ReX} key={"rex" + i} />
+                ) : (
+                  <Grid key={i}>
+                    <UserMessage userMessage={chat.user} key={"user" + i} />
+                    <ReXMessage reXMessage={chat.ReX} key={"rex" + i} />
+                  </Grid>
+                )
+              )
+            )}
+          </Grid>
+          <Grid style={{ ...ChatStyles.toSendArea }}>
+            <Textarea
+              style={{ ...ChatStyles.textArea }}
+              name="Soft"
+              placeholder="Type a message to ReX ..."
+              variant="soft"
+              onChange={(e) => setUserPrompt(e.target.value)}
             />
-          </Button>
+            <Button style={{ ...ChatStyles.sendButton }} onClick={handleSubmit}>
+              <img
+                src={Images.SendButton}
+                alt="send"
+                style={{ ...ChatStyles.sendButtonImage }}
+              />
+            </Button>
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 };
 

@@ -11,8 +11,32 @@
           ]
         },
         {
-          "user": "I would like to change my career but not sure where to start.",
-          "ReX": ""
+          "user": "hello",
+          "ReX": "..."
+        },
+        {
+          "user": "",
+          "ReX": "..."
+        },
+        {
+          "user": "",
+          "ReX": "..."
+        },
+        {
+          "user": "",
+          "ReX": "..."
+        },
+        {
+          "user": "",
+          "ReX": "..."
+        },
+        {
+          "user": "",
+          "ReX": "..."
+        },
+        {
+          "user": "",
+          "ReX": "..."
         }
       ],
       "isSessionEnded": false
@@ -26,22 +50,6 @@
             "Hello Andrew, I am ReX. 😁",
             "What aspect of your career would you like guidance on?"
           ]
-        },
-        {
-          "user": "I would like to change my career but not sure where to start.",
-          "ReX": ""
-        },
-        {
-          "user": "hello",
-          "ReX": "..."
-        },
-        {
-          "user": "",
-          "ReX": "..."
-        },
-        {
-          "user": "hello",
-          "ReX": "..."
         }
       ],
       "isSessionEnded": false
@@ -57,15 +65,7 @@
           ]
         },
         {
-          "user": "I would like to change my career.",
-          "ReX": "..."
-        },
-        {
-          "user": "",
-          "ReX": "..."
-        },
-        {
-          "user": "",
+          "user": "hello",
           "ReX": "..."
         },
         {

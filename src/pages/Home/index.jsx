@@ -128,7 +128,7 @@ function Home() {
           </Grid>
         </Grid>
       ) : (
-        <Grid>
+        <Grid style={{ paddingTop: '50px' }}>
           <Grid style={{ ...AllStyles.endedChatsTitle }}>
             <Grid style={{ ...AllStyles.endedChats }}>Active Chats </Grid>
           </Grid>

@@ -8,8 +8,9 @@ const AllStyles = {
     alignSelf: 'stretch',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    position: 'sticky',
-    margin: '24px 0',
+    background: 'rgba(255, 255, 255, 1)',
+    position: 'fixed',
+    width: '95%',
   },
   navigationRight: {
     display: 'flex',
@@ -37,6 +38,7 @@ const AllStyles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: '50px',
   },
   homeRex: {
     zIndex: 100,

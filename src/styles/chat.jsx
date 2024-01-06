@@ -46,9 +46,9 @@ const ChatStyles = {
         display: 'flex',
         flexDirection: 'row',
         gap: '12px',
-        position: 'sticky',
+        position: 'fixed',
         bottom: 48,
-        width: '100%',
+        width: '85%',
         margin: '24px 0',
     },
     textArea: {
