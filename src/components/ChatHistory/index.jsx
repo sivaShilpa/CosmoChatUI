@@ -5,7 +5,7 @@ import chatHistoryStyles from "../../styles/chatHistory";
 import { generatePath } from "react-router";
 
 const ChatHistory = ({ id, date, lasttext, ended }) => {
-  const path = generatePath("chats/:id", {id})
+  const path = `/chats/${id}`
   return (   
     <Link href={path} underline="none"> 
       <Grid style={{ ...chatHistoryStyles.outLine }}>
@@ -13,14 +13,14 @@ const ChatHistory = ({ id, date, lasttext, ended }) => {
           <img src={Images.HomRex} alt="ReX" style={{ width: "80px" }} />
         </Grid>
         <Grid style={{ ...chatHistoryStyles.text }}>
-          {ended == "true" ? (
+          {ended == true ? (
             <Grid style={{ ...chatHistoryStyles.title }}>ReX - {date}</Grid>
           ) : (
             <Grid style={{ ...chatHistoryStyles.title }}>ReX</Grid>
           )}
           <Grid style={{ ...chatHistoryStyles.body }}>{lasttext}</Grid>
         </Grid>
-        {ended == "false" ? (
+        {ended == false ? (
           <Grid>
             <img src={Images.Typing} alt="typing" />
           </Grid>

@@ -2,7 +2,7 @@ const AllStyles = {
   navigationBar: {
     display: "flex",
     height: "48px",
-    padding: "12px 5px",
+    padding: "12px 0",
     alignItems: "center",
     gap: "12px",
     alignSelf: "stretch",
@@ -10,7 +10,7 @@ const AllStyles = {
     justifyContent: "space-between",
     background: "rgba(255, 255, 255, 1)",
     position: "fixed",
-    width: "95%",
+    width: "85%",
   },
   navigationRight: {
     display: "flex",

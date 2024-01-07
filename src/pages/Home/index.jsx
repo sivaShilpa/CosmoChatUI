@@ -30,7 +30,6 @@ function Home() {
     "Nov",
     "Dec",
   ];
-  let session = { id: 0, date: "", chats: [], isChatEnded: false };
 
   useEffect(() => {
     const controller = new AbortController();
@@ -65,16 +64,41 @@ function Home() {
     const chat = [{ ReX: reXIntro }];
     const isSessionEnded = false;
 
-    session = {
+    const newSessions = sessions.map((session) =>
+      session.isSessionEnded == false
+        ? {
+            id: session.id,
+            date: session.date,
+            chats: session.chats,
+            isSessionEnded: true,
+          }
+        : {}
+    );
+    setSessions(newSessions);
+    
+    // newSessions.map((session) => {
+    //   if(session.id)
+    //   try {
+    //     const response = api.put(`/sessions/${session.id}`, session);
+    //     const allSessions = [...sessions, response.data];
+    //     setSessions(allSessions);
+    //   } catch (err) {
+    //     console.log(`Error: ${err.message}`);
+    //   }
+    // });
+
+    const newSession = {
       id: id,
       date: formattedDate,
       chats: chat,
       isSessionEnded: isSessionEnded,
     };
+
     try {
-      const response = await api.post("/sessions", session);
+      const response = await api.post("/sessions", newSession);
       const allSessions = [...sessions, response.data];
       setSessions(allSessions);
+      console.log(allSessions);
       navigator(`/chats/${id}`);
     } catch (err) {
       console.log(`Error: ${err.message}`);
@@ -82,7 +106,7 @@ function Home() {
   };
 
   return (
-    <Grid style={{ padding: '24px' }}>
+    <Grid style={{ padding: "24px" }}>
       <Navigation isChat={false} isEndedChats={false} />
       {sessions.length === 0 ? (
         <Grid style={{ ...AllStyles.homeBody }}>
@@ -139,10 +163,14 @@ function Home() {
                   id={session.id}
                   date={session.date}
                   lasttext={
-                    session.chats[session.chats.length - 1].ReX.slice(0, 75) + "..."
+                    session.chats
+                      ? session.chats[session.chats.length - 1].ReX[
+                          session.chats[session.chats.length - 1].ReX.length - 1
+                        ]
+                      : ""
                   }
                   ended={session.isSessionEnded}
-                />                
+                />
               ) : null
             )}
           </Grid>
@@ -155,8 +183,8 @@ function Home() {
             </Grid>
           </Grid>
           <Grid style={{ ...AllStyles.endedChatsBody }}>
-            {sessions.map((session) =>
-              session.isSessionEnded ? (
+            {sessions.map((session, i) =>
+              session.isSessionEnded && i<4? (
                 <ChatHistory
                   key={session.id}
                   id={session.id}
@@ -178,7 +206,6 @@ function Home() {
             <Button
               style={{ ...AllStyles.startChatButton }}
               onClick={handleSubmit}
-              sentenceCase
             >
               <Typography style={{ ...AllStyles.startChatButtonText }}>
                 Start Another Chat With ReX
