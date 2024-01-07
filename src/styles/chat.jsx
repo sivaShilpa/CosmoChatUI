@@ -8,7 +8,7 @@ const ChatStyles = {
   reXMessage: {
     display: "flex",
     padding: "16px 24px",
-    width: "250px",
+    width: "300px",
     margin: "0 0 16px 0",
     float: "left",
     gap: "10px",
@@ -27,7 +27,7 @@ const ChatStyles = {
   userMessage: {
     display: "flex",
     padding: "16px 24px",
-    width: "250px",
+    width: "300px",
     margin: "0 0 16px 0",
     float: "right",
     gap: "10px",

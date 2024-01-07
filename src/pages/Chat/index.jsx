@@ -8,13 +8,12 @@ import ReXMessage from "../../components/ReXMessage";
 import api from "../../api/sessions";
 import OpenAI from "openai";
 import { useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import UserMessage from "../../components/UserMessage";
 
 const Chat = () => {
   const { id } = useParams();
   const [userPrompt, setUserPrompt] = useState("");
-  const [reXReply, setReXReply] = useState("...");
+  const [reXReply, setReXReply] = useState("");
   const [sessions, setSessions] = useState([]);
   const [thisSession, setThisSession] = useState([]);
   const months = [
@@ -31,8 +30,8 @@ const Chat = () => {
     "Nov",
     "Dec",
   ];
-
-  // const openai = new OpenAI({apiKey: OPENAI_API_KEY, dangerouslyAllowBrowser: true});
+  const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
+  const openai = new OpenAI({apiKey: API_KEY, dangerouslyAllowBrowser: true});
 
   useEffect(() => {
     const controller = new AbortController();
@@ -47,7 +46,6 @@ const Chat = () => {
         if (response && response.data) {
           setSessions(response.data);
           setThisSession(sessions.filter((session) => session["id"] == id));
-          console.log(thisSession);
         }
       } catch (err) {
         if (err.response) {
@@ -72,34 +70,37 @@ const Chat = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // callOpenAIAPI();
+    let updatedSession = {};
+    callOpenAIAPI();
+    
+    setTimeout(function (){
+      const date = new Date();
+      const month = date.getMonth();
+      const day = date.getDate();
+      const year = date.getFullYear();
+      const formattedDate = months[month] + " " + day + ", " + year;
 
-    const date = new Date();
-    const month = date.getMonth();
-    const day = date.getDate();
-    const year = date.getFullYear();
-    const formattedDate = months[month] + " " + day + ", " + year;
+      thisSession[0]["chats"] = [
+        ...thisSession[0].chats,
+        { user: userPrompt, ReX: reXReply },
+      ];
 
-    thisSession[0]["chats"] = [
-      ...thisSession[0].chats,
-      { user: userPrompt, ReX: reXReply },
-    ];
-
-    const updatedSession = {
-      id: id,
-      date: formattedDate,
-      chats: thisSession[0]["chats"],
-      isSessionEnded: thisSession[0]["isSessionEnded"],
-    };
-
-    try {
-      const response = await api.put(`/sessions/${id}`, updatedSession);
-      const allSessions = [...sessions, response.data];
-      setSessions(allSessions);
-      setUserPrompt("");
-    } catch (err) {
-      console.log(`Error: ${err.message}`);
-    }
+      updatedSession = {
+        id: id,
+        date: formattedDate,
+        chats: thisSession[0]["chats"],
+        isSessionEnded: thisSession[0]["isSessionEnded"],
+      };
+    
+      try {
+        const response = api.put(`/sessions/${id}`, updatedSession);
+        const allSessions = [...sessions, response.data];
+        setSessions(allSessions);
+        setUserPrompt("");
+      } catch (err) {
+        console.log(`Error: ${err.message}`);
+      }
+    }, 100);
   };
 
   async function callOpenAIAPI() {
@@ -120,9 +121,8 @@ const Chat = () => {
       model: "gpt-3.5-turbo",
       max_tokens: 100,
     });
-
-    // console.log(completion.choices[0].message.content);
-    setReXReply(completion.choices[0].message.content);
+   
+    setReXReply(completion.choices[0].message.content);     
   }
 
   return (

@@ -139,14 +139,10 @@ function Home() {
                   id={session.id}
                   date={session.date}
                   lasttext={
-                    session.chats
-                      ? session.chats[session.chats.length - 1].ReX[
-                          session.chats[session.chats.length - 1].ReX.length - 1
-                        ]
-                      : ""
+                    session.chats[session.chats.length - 1].ReX.slice(0, 75) + "..."
                   }
                   ended={session.isSessionEnded}
-                />
+                />                
               ) : null
             )}
           </Grid>
