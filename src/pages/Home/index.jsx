@@ -82,7 +82,7 @@ function Home() {
   };
 
   return (
-    <>
+    <Grid style={{ padding: '24px' }}>
       <Navigation isChat={false} isEndedChats={false} />
       {sessions.length === 0 ? (
         <Grid style={{ ...AllStyles.homeBody }}>
@@ -178,6 +178,7 @@ function Home() {
             <Button
               style={{ ...AllStyles.startChatButton }}
               onClick={handleSubmit}
+              sentenceCase
             >
               <Typography style={{ ...AllStyles.startChatButtonText }}>
                 Start Another Chat With ReX
@@ -186,7 +187,7 @@ function Home() {
           </Grid>
         </Grid>
       )}
-    </>
+    </Grid>
   );
 }
 

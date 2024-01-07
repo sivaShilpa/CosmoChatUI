@@ -78,11 +78,11 @@ const AllStyles = {
   },
   startChatButton: {
     display: "flex",
-    padding: "18px 16px",
+    padding: "20px 16px",
     borderRadius: "100px",
     background: "var(--Primary-500, #6949FF)",
     boxShadow: "4px 8px 24px 0px rgba(0, 205, 189, 0.25)",
-    height: "22px",
+    height: "58px",
     ":hover": {
       textDecoration: "none",
     },
@@ -98,11 +98,7 @@ const AllStyles = {
     fontWeight: 700,
     lineHeight: "140%",
     letterSpacing: "0.2px",
-    textDecoration: "none",
-    textAlign: "center",
-    ":hover": {
-      textDecoration: "none",
-    },
+    textTransform: "capitalize",
   },
   endedChats: {
     color: "var(--Greyscale-900, #212121)",

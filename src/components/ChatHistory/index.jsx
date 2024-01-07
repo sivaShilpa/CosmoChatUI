@@ -7,7 +7,7 @@ import { generatePath } from "react-router";
 const ChatHistory = ({ id, date, lasttext, ended }) => {
   const path = generatePath("chats/:id", {id})
   return (   
-    <Link href={path}> 
+    <Link href={path} underline="none"> 
       <Grid style={{ ...chatHistoryStyles.outLine }}>
         <Grid>
           <img src={Images.HomRex} alt="ReX" style={{ width: "80px" }} />
