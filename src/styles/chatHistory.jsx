@@ -5,10 +5,11 @@ const chatHistoryStyles = {
     padding: "24px",
     alignItems: "center",
     gap: "20px",
-    alignSelf: "stretch",
     borderRadius: "32px",
     background: "var(--Others-White, #FFF)",
     boxShadow: "0px 4px 60px 0px rgba(4, 6, 15, 0.05)",
+    zIndex: 10,
+    marginBottom: '24px',
   },
   title: {
     color: "var(--Greyscale-900, #212121)",
@@ -34,6 +35,19 @@ const chatHistoryStyles = {
     letterSpacing: "0.2px",
     alignSelf: "stretch",
   },
+  deleteButton: {
+    display: "flex",
+    height: "127px",
+    padding: "24px",
+    alignItems: "center",
+    justifyContent: 'flex-end',
+    right: '24px',
+    width: '25%', 
+    borderRadius: '0 34px 34px 0',
+    background: 'var(--alerts-status-error, #F75555)',
+    position: 'absolute', 
+    zIndex: 0,   
+  }, 
 };
 
 export default chatHistoryStyles;

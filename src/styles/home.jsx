@@ -127,9 +127,10 @@ const AllStyles = {
     padding: "24px 0",
   },
   endedChatsBody: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "24px",
+    // display: "flex",
+    // flexDirection: "column",
+    // gap: "150px",
+    // // alignSelf: 'stretch',
   },
   startAnotherChatButtonGrid: {
     display: "flex",
@@ -137,10 +138,11 @@ const AllStyles = {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    gap: "24px",
+    // gap: "150px",
     borderRadius: "24px 24px 0px 0px",
     border: "1px solid var(--Greyscale-100, #F5F5F5)",
     background: "var(--Others-White, #FFF)",
+    position: 'relative',
   },
 };
 

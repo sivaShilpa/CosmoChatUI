@@ -34,12 +34,9 @@ const Chat = () => {
   const openai = new OpenAI({apiKey: API_KEY, dangerouslyAllowBrowser: true});
 
   useEffect(() => {
-    const controller = new AbortController();
     const fetchSessions = async () => {
       try {
-        const response = await api.get("/sessions", {
-          signal: controller.signal,
-        });
+        const response = await api.get("/sessions");
 
         handleScroll();
         window.addEventListener("scroll", handleScroll);
@@ -57,7 +54,6 @@ const Chat = () => {
         }
       }
       return () => {
-        controller?.abort();
         window.removeEventListener("scroll", handleScroll);
       };
     };
@@ -69,40 +65,50 @@ const Chat = () => {
   };
 
   const handleSubmit = async (e) => {
+    // console.log(id)
     e.preventDefault();
     let updatedSession = {};
-    callOpenAIAPI();
+    // callOpenAIAPI();
     
-    setTimeout(function (){
+    // setTimeout(async function(){
       const date = new Date();
       const month = date.getMonth();
       const day = date.getDate();
       const year = date.getFullYear();
       const formattedDate = months[month] + " " + day + ", " + year;
 
-      thisSession[0]["chats"] = [
-        ...thisSession[0].chats,
-        { user: userPrompt, ReX: reXReply },
-      ];
+      // thisSession[0]["chats"] = [
+      //   ...thisSession[0].chats,
+      //   { user: userPrompt, ReX: reXReply },
+      // ];
 
+      thisSession[0]["chats"].push({ user: userPrompt, ReX: reXReply })      
+    
       updatedSession = {
         id: id,
         date: formattedDate,
         chats: thisSession[0]["chats"],
         isSessionEnded: thisSession[0]["isSessionEnded"],
       };
-    
+
       try {
-        const response = api.put(`/sessions/${id}`, updatedSession);
-        const allSessions = [...sessions, response.data];
-        setSessions(allSessions);
+        // let mock = new MockAdapter(axios, { onNoMatch: "throwException" });
+        // mock.onPut(`/sessions`).reply(200, updatedSession)
+        // let  mockAdapter = axios.defaults.adapter;
+        // mock.restore();
+        const response = await api.patch(`sessions/${id}/`, updatedSession)
+        setSessions(sessions.map(session => session.id == id ? response.data : session));
         setUserPrompt("");
-      } catch (err) {
+        // axios.defaults.adapter = mockAdapter
+      }
+
+       catch (err) {
         console.log(`Error: ${err.message}`);
       }
-    }, 100);
+    // }, 100);
   };
 
+  
   async function callOpenAIAPI() {
     const completion = await openai.chat.completions.create({
       messages: [
@@ -156,6 +162,8 @@ const Chat = () => {
             placeholder="Type a message to ReX ..."
             variant="soft"
             onChange={(e) => setUserPrompt(e.target.value)}
+            onFocus={(e) => e.preventDefault()}
+            value={userPrompt}
           />
           <Button style={{ ...ChatStyles.sendButton }} onClick={handleSubmit}>
             <img

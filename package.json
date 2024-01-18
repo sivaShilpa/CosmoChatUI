@@ -11,6 +11,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.4",
+    "axios-mock-adapter": "^1.22.0",
     "clsx": "^2.1.0",
     "emoji.json": "^15.1.0",
     "eslint-config-airbnb": "^19.0.4",

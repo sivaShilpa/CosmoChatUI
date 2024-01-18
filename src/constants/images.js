@@ -8,6 +8,7 @@ import BackArrow from '../assets/backArrow.png';
 import Search from '../assets/Search.png';
 import Options from '../assets/Options.png';
 import SendButton from '../assets/sendButton.png';
+import Trash from '../assets/Trash.png';
 
 const Images = {
   NavRex: NavigationRex,
@@ -20,6 +21,7 @@ const Images = {
   Search: Search,
   Options: Options,
   SendButton: SendButton,
+  Trash: Trash,
 };
 
 export default Images;

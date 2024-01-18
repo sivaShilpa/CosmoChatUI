@@ -11,7 +11,7 @@ import { useNavigate } from "react-router";
 function Home() {
   const [sessions, setSessions] = useState([]);
   const navigator = useNavigate();
-
+ 
   const reXIntro = [
     "Hello Andrew, I am ReX. 😁",
     "What aspect of your career would you like guidance on?",
@@ -53,9 +53,8 @@ function Home() {
     fetchSessions();
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const id = sessions.length ? sessions[0].id + 1 : 1;
+  const handleSubmit = async () => {
+    const id = sessions.length ? (parseInt(sessions[0].id) + 1).toString() : "1";
     const date = new Date();
     const month = date.getMonth();
     const day = date.getDate();
@@ -64,30 +63,7 @@ function Home() {
     const chat = [{ ReX: reXIntro }];
     const isSessionEnded = false;
 
-    const newSessions = sessions.map((session) =>
-      session.isSessionEnded == false
-        ? {
-            id: session.id,
-            date: session.date,
-            chats: session.chats,
-            isSessionEnded: true,
-          }
-        : {}
-    );
-    setSessions(newSessions);
-    
-    // newSessions.map((session) => {
-    //   if(session.id)
-    //   try {
-    //     const response = api.put(`/sessions/${session.id}`, session);
-    //     const allSessions = [...sessions, response.data];
-    //     setSessions(allSessions);
-    //   } catch (err) {
-    //     console.log(`Error: ${err.message}`);
-    //   }
-    // });
-
-    const newSession = {
+    const newSession =  {
       id: id,
       date: formattedDate,
       chats: chat,
@@ -95,12 +71,30 @@ function Home() {
     };
 
     try {
+      if(parseInt(id) > 1){
+        const lastSessionid = (parseInt(id) - 1).toString();
+        const activeSession = sessions.filter(session => session.id == lastSessionid)
+        activeSession[0].isSessionEnded=true
+        const res = await api.patch(`/sessions/${lastSessionid}`, activeSession[0] )
+        setSessions(sessions.map(session => session.id == lastSessionid ? res.data : session));
+      }      
       const response = await api.post("/sessions", newSession);
       const allSessions = [...sessions, response.data];
       setSessions(allSessions);
-      console.log(allSessions);
-      navigator(`/chats/${id}`);
+      navigator(`/sessions/${id}`);
     } catch (err) {
+      console.log(`Error: ${err.message}`);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try{
+      const ID = id.toString();
+      // const response = await api.get("/sessions");
+      // setSessions(response.data.reverse());
+      await api.delete(`/sessions/${ID}`);
+      setSessions(sessions.filter(session => session.id !== ID))
+    }catch(err){
       console.log(`Error: ${err.message}`);
     }
   };
@@ -153,7 +147,7 @@ function Home() {
       ) : (
         <Grid style={{ paddingTop: "50px" }}>
           <Grid style={{ ...AllStyles.endedChatsTitle }}>
-            <Grid style={{ ...AllStyles.endedChats }}>Active Chats </Grid>
+            <Grid style={{ ...AllStyles.endedChats }}>Active Chats</Grid>
           </Grid>
           <Grid style={{ ...AllStyles.endedChatsBody }}>
             {sessions.map((session) =>
@@ -170,6 +164,7 @@ function Home() {
                       : ""
                   }
                   ended={session.isSessionEnded}
+                  handleDelete={null}
                 />
               ) : null
             )}
@@ -198,6 +193,7 @@ function Home() {
                       : ""
                   }
                   ended={session.isSessionEnded}
+                  handleDelete={() => handleDelete(session.id)}
                 />
               ) : null
             )}

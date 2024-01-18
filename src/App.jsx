@@ -9,7 +9,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" index element={<Home />}></Route>
-        <Route path="/chats/:id" element={<Chat />}></Route>
+        <Route path="/sessions/:id" element={<Chat />}></Route>
         <Route path="/endedChats" element={<EndedChats />}></Route>
       </Routes>
     </>
