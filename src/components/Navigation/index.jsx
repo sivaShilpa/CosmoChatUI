@@ -5,37 +5,37 @@ import Images from "../../constants/images";
 
 function Navigation({ isChat, isEndedChats }) {
   return (
-    <Grid style={{ ...AllStyles.navigationBar }}>
+    <Grid { ...AllStyles.navigationBar }>
       {isEndedChats ? (
-        <Grid style={{ ...AllStyles.navigationLeft }}>
+        <Grid { ...AllStyles.navigationLeft }>
           <Grid style={{ margin: "5px" }}>
             <Link href="/">
               <img src={Images.BackArrow} alt="NavRex" />
             </Link>
           </Grid>
-          <Grid style={{ ...AllStyles.navigationName }}>Ended Chats</Grid>
+          <Grid { ...AllStyles.navigationName }>Ended Chats</Grid>
         </Grid>
       ) : isChat ? (
-        <Grid style={{ ...AllStyles.navigationLeft }}>
+        <Grid { ...AllStyles.navigationLeft }>
           <Grid style={{ margin: "5px" }}>
             <Link href="/">
               <img src={Images.BackArrow} alt="NavRex" />
             </Link>
           </Grid>
-          <Grid style={{ ...AllStyles.navigationName }}>ReX</Grid>
+          <Grid { ...AllStyles.navigationName }>ReX</Grid>
         </Grid>
       ) : (
-        <Grid style={{ ...AllStyles.navigationLeft }}>
+        <Grid { ...AllStyles.navigationLeft }>
           <Grid>
             <Link href="/">
               <img src={Images.NavRex} alt="NavRex" />
             </Link>
           </Grid>
-          <Grid style={{ ...AllStyles.navigationName }}>ReX</Grid>
+          <Grid { ...AllStyles.navigationName }>ReX</Grid>
         </Grid>
       )}
       {isChat || isEndedChats ? (
-        <Grid style={{ ...AllStyles.navigationRight }}>
+        <Grid { ...AllStyles.navigationRight }>
           <Grid>
             <Link href="/search">
               <img src={Images.Search} alt="Activity" />
@@ -48,7 +48,7 @@ function Navigation({ isChat, isEndedChats }) {
           </Grid>
         </Grid>
       ) : (
-        <Grid style={{ ...AllStyles.navigationRight }}>
+        <Grid { ...AllStyles.navigationRight }>
           <Grid>
             <Link href="/activity">
               <img src={Images.ActivityIc} alt="Activity" />

@@ -41,8 +41,6 @@ const EndedChats = () => {
   const handleDelete = async (id) => {
     try{
       const ID = id.toString();
-      // const response = await api.get("/sessions");
-      // setSessions(response.data.reverse());
       await api.delete(`/sessions/${ID}`);
       setSessions(sessions.filter(session => session.id !== ID))
     }catch(err){
@@ -51,7 +49,7 @@ const EndedChats = () => {
   };
 
   return (
-    <>
+    <Grid>
         <Navigation isChat={false} isEndedChats={true} />
         <Grid container style={{ padding:"70px 20px" }}>
             {sessions.map((session) =>
@@ -74,7 +72,7 @@ const EndedChats = () => {
               ) : null
             )}
           </Grid>
-    </>
+    </Grid>
   )
 }
 

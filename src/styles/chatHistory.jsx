@@ -42,7 +42,7 @@ const chatHistoryStyles = {
     alignItems: "center",
     justifyContent: 'flex-end',
     right: '24px',
-    width: '25%', 
+    width: '20%', 
     borderRadius: '0 34px 34px 0',
     background: 'var(--alerts-status-error, #F75555)',
     position: 'absolute', 

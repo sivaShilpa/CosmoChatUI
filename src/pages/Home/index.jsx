@@ -11,7 +11,7 @@ import { useNavigate } from "react-router";
 function Home() {
   const [sessions, setSessions] = useState([]);
   const navigator = useNavigate();
- 
+
   const reXIntro = [
     "Hello Andrew, I am ReX. 😁",
     "What aspect of your career would you like guidance on?",
@@ -54,7 +54,9 @@ function Home() {
   }, []);
 
   const handleSubmit = async () => {
-    const id = sessions.length ? (parseInt(sessions[0].id) + 1).toString() : "1";
+    const id = sessions.length
+      ? (parseInt(sessions[0].id) + 1).toString()
+      : "1";
     const date = new Date();
     const month = date.getMonth();
     const day = date.getDate();
@@ -63,7 +65,7 @@ function Home() {
     const chat = [{ ReX: reXIntro }];
     const isSessionEnded = false;
 
-    const newSession =  {
+    const newSession = {
       id: id,
       date: formattedDate,
       chats: chat,
@@ -71,13 +73,22 @@ function Home() {
     };
 
     try {
-      if(parseInt(id) > 1){
+      if (parseInt(id) > 1) {
         const lastSessionid = (parseInt(id) - 1).toString();
-        const activeSession = sessions.filter(session => session.id == lastSessionid)
-        activeSession[0].isSessionEnded=true
-        const res = await api.patch(`/sessions/${lastSessionid}`, activeSession[0] )
-        setSessions(sessions.map(session => session.id == lastSessionid ? res.data : session));
-      }      
+        const activeSession = sessions.filter(
+          (session) => session.id == lastSessionid
+        );
+        activeSession[0].isSessionEnded = true;
+        const res = await api.patch(
+          `/sessions/${lastSessionid}`,
+          activeSession[0]
+        );
+        setSessions(
+          sessions.map((session) =>
+            session.id == lastSessionid ? res.data : session
+          )
+        );
+      }
       const response = await api.post("/sessions", newSession);
       const allSessions = [...sessions, response.data];
       setSessions(allSessions);
@@ -88,27 +99,27 @@ function Home() {
   };
 
   const handleDelete = async (id) => {
-    try{
+    try {
       const ID = id.toString();
-      // const response = await api.get("/sessions");
-      // setSessions(response.data.reverse());
       await api.delete(`/sessions/${ID}`);
-      setSessions(sessions.filter(session => session.id !== ID))
-    }catch(err){
+      setSessions(sessions.filter((session) => session.id !== ID));
+    } catch (err) {
       console.log(`Error: ${err.message}`);
     }
   };
 
   return (
-    <Grid style={{ padding: "24px" }}>
-      <Navigation isChat={false} isEndedChats={false} />
+    <Grid container {...AllStyles.homeOutline}>
+      <Grid item>
+        <Navigation isChat={false} isEndedChats={false} />
+      </Grid>
       {sessions.length === 0 ? (
-        <Grid style={{ ...AllStyles.homeBody }}>
-          <Grid style={{ ...AllStyles.homeRex }}>
+        <Grid item {...AllStyles.homeBody}>
+          <Grid {...AllStyles.homeRex}>
             <img src={Images.HomRex} alt="homeRex" />
           </Grid>
           <Grid className="greetings">
-            <Typography style={{ ...AllStyles.greetings }}>
+            <Typography {...AllStyles.greetings}>
               Welcome, Andrew!
               <motion.span
                 animate={{ rotate: [0, 30, 30, 0] }}
@@ -124,30 +135,27 @@ function Home() {
             </Typography>
           </Grid>
           <Grid>
-            <Typography style={{ ...AllStyles.message }}>
+            <Typography {...AllStyles.message}>
               Receive Career Help From ReX!
             </Typography>
           </Grid>
           <Grid>
-            <Typography style={{ ...AllStyles.message2 }}>
+            <Typography {...AllStyles.message2}>
               Start a conversation with ReX right now!
             </Typography>
           </Grid>
           <Grid style={{ textAlign: "center" }}>
-            <Button
-              style={{ ...AllStyles.startChatButton }}
-              onClick={handleSubmit}
-            >
-              <Typography style={{ ...AllStyles.startChatButtonText }}>
+            <Button {...AllStyles.startChatButton} onClick={handleSubmit}>
+              <Typography { ...AllStyles.startChatButtonText }>
                 Start Chat With ReX
               </Typography>
             </Button>
           </Grid>
         </Grid>
       ) : (
-        <Grid style={{ paddingTop: "50px" }}>
+        <Grid item style={{ paddingTop: "50px" }}>
           <Grid style={{ ...AllStyles.endedChatsTitle }}>
-            <Grid style={{ ...AllStyles.endedChats }}>Active Chats</Grid>
+            <Grid { ...AllStyles.endedChats }>Active Chats</Grid>
           </Grid>
           <Grid style={{ ...AllStyles.endedChatsBody }}>
             {sessions.map((session) =>
@@ -163,23 +171,23 @@ function Home() {
                         ]
                       : ""
                   }
-                  ended={session.isSessionEnded}
+                  sessionEnded={session.isSessionEnded}
                   handleDelete={null}
                 />
               ) : null
             )}
           </Grid>
           <Grid style={{ ...AllStyles.endedChatsTitle }}>
-            <Grid style={{ ...AllStyles.endedChats }}>Ended Chats </Grid>
+            <Grid { ...AllStyles.endedChats }>Ended Chats </Grid>
             <Grid>
-              <Link style={{ ...AllStyles.seeAllLink }} href="/endedChats">
+              <Link { ...AllStyles.seeAllLink } href="/endedChats">
                 See All
               </Link>
             </Grid>
           </Grid>
           <Grid style={{ ...AllStyles.endedChatsBody }}>
             {sessions.map((session, i) =>
-              session.isSessionEnded && i<4? (
+              session.isSessionEnded && i < 4 ? (
                 <ChatHistory
                   key={session.id}
                   id={session.id}
@@ -192,7 +200,7 @@ function Home() {
                         ]
                       : ""
                   }
-                  ended={session.isSessionEnded}
+                  sessionEnded={session.isSessionEnded}
                   handleDelete={() => handleDelete(session.id)}
                 />
               ) : null
@@ -200,10 +208,10 @@ function Home() {
           </Grid>
           <Grid style={{ ...AllStyles.startAnotherChatButtonGrid }}>
             <Button
-              style={{ ...AllStyles.startChatButton }}
+              { ...AllStyles.startChatButton }
               onClick={handleSubmit}
             >
-              <Typography style={{ ...AllStyles.startChatButtonText }}>
+              <Typography { ...AllStyles.startChatButtonText }>
                 Start Another Chat With ReX
               </Typography>
             </Button>

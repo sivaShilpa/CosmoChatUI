@@ -3,13 +3,11 @@ import { Grid, Button} from "@mui/material";
 import Images from "../../constants/images";
 import chatHistoryStyles from "../../styles/chatHistory";
 import { useNavigate } from "react-router";
-import api from '../../api/sessions';
 
 const ChatHistory = ({ id, date, lasttext, sessionEnded, handleDelete }) => {
   const [dragged, setDragged] = useState(false);
   const navigator = useNavigate();
-  const [sessions, setSessions] = useState([]);
-
+  
   const handleDrag = () => {
     setDragged((prev) => !prev);
   }; 
@@ -19,7 +17,7 @@ const ChatHistory = ({ id, date, lasttext, sessionEnded, handleDelete }) => {
   
   return (
     <Grid container justifyContent="flex-start" alignItems="center">
-      <Grid item xs={sessionEnded ? 0 : 4 } sx={{display: !dragged && 'none' }}>        
+      <Grid item xs={sessionEnded ? 4 : 0 } sx={{display: !dragged && 'none' }}>        
          <Button style={{ ...chatHistoryStyles.deleteButton }} onClick={handleDelete}>
             <img src={Images.Trash} alt="Delete" />
           </Button>       
@@ -33,7 +31,7 @@ const ChatHistory = ({ id, date, lasttext, sessionEnded, handleDelete }) => {
         }
         xs={dragged ? 10 : 12}
         onDoubleClick={handleLink}
-        onClick={handleDrag}        
+        onClick={sessionEnded ? handleDrag : null}        
       >
         <Grid>
           <img src={Images.HomRex} alt="ReX" style={{ width: "80px" }} />
