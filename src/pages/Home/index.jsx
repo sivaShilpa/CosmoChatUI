@@ -7,10 +7,12 @@ import api from "../../api/sessions";
 import ChatHistory from "../../components/ChatHistory";
 import Navigation from "../../components/Navigation";
 import { useNavigate } from "react-router";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function Home() {
   const [sessions, setSessions] = useState([]);
   const navigator = useNavigate();
+  const matches = useMediaQuery('(min-width:600px)');
 
   const reXIntro = [
     "Hello Andrew, I am ReX. 😁",
@@ -109,7 +111,7 @@ function Home() {
   };
 
   return (
-    <Grid container {...AllStyles.homeOutline}>
+    <Grid container style={{ display: matches ? "none" : "block" }}>
       <Grid item>
         <Navigation isChat={false} isEndedChats={false} />
       </Grid>
@@ -154,10 +156,10 @@ function Home() {
         </Grid>
       ) : (
         <Grid item style={{ paddingTop: "50px" }}>
-          <Grid style={{ ...AllStyles.endedChatsTitle }}>
+          <Grid { ...AllStyles.endedChatsTitle }>
             <Grid { ...AllStyles.endedChats }>Active Chats</Grid>
           </Grid>
-          <Grid style={{ ...AllStyles.endedChatsBody }}>
+          <Grid>
             {sessions.map((session) =>
               !session.isSessionEnded ? (
                 <ChatHistory
@@ -177,7 +179,7 @@ function Home() {
               ) : null
             )}
           </Grid>
-          <Grid style={{ ...AllStyles.endedChatsTitle }}>
+          <Grid { ...AllStyles.endedChatsTitle }>
             <Grid { ...AllStyles.endedChats }>Ended Chats </Grid>
             <Grid>
               <Link { ...AllStyles.seeAllLink } href="/endedChats">
@@ -185,7 +187,7 @@ function Home() {
               </Link>
             </Grid>
           </Grid>
-          <Grid style={{ ...AllStyles.endedChatsBody }}>
+          <Grid>
             {sessions.map((session, i) =>
               session.isSessionEnded && i < 4 ? (
                 <ChatHistory
@@ -206,7 +208,7 @@ function Home() {
               ) : null
             )}
           </Grid>
-          <Grid style={{ ...AllStyles.startAnotherChatButtonGrid }}>
+          <Grid { ...AllStyles.startAnotherChatButtonGrid }>
             <Button
               { ...AllStyles.startChatButton }
               onClick={handleSubmit}

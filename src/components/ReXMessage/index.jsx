@@ -4,8 +4,8 @@ import ChatStyles from "../../styles/chat";
 
 const ReXMessage = ({ reXMessage }) => {
   return (
-    <Grid style={{ ...ChatStyles.reXMessage }}>
-      <Typography style={{ ...ChatStyles.reXMessageText }}>
+    <Grid { ...ChatStyles.reXMessage }>
+      <Typography { ...ChatStyles.reXMessageText }>
         {reXMessage}
       </Typography>
     </Grid>

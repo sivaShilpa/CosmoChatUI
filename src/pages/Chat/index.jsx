@@ -9,6 +9,7 @@ import api from "../../api/sessions";
 import OpenAI from "openai";
 import { useParams } from "react-router-dom";
 import UserMessage from "../../components/UserMessage";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Chat = () => {
   const { id } = useParams();
@@ -31,7 +32,8 @@ const Chat = () => {
     "Dec",
   ];
   const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
-  const openai = new OpenAI({apiKey: API_KEY, dangerouslyAllowBrowser: true});
+  const openai = new OpenAI({ apiKey: API_KEY, dangerouslyAllowBrowser: true });
+  const matches = useMediaQuery("(min-width:600px)");
 
   useEffect(() => {
     const fetchSessions = async () => {
@@ -65,25 +67,18 @@ const Chat = () => {
   };
 
   const handleSubmit = async (e) => {
-    // console.log(id)
     e.preventDefault();
     let updatedSession = {};
-    // callOpenAIAPI();
-    
-    // setTimeout(async function(){
+    callOpenAIAPI();
+    setTimeout(async function () {
       const date = new Date();
       const month = date.getMonth();
       const day = date.getDate();
       const year = date.getFullYear();
       const formattedDate = months[month] + " " + day + ", " + year;
 
-      // thisSession[0]["chats"] = [
-      //   ...thisSession[0].chats,
-      //   { user: userPrompt, ReX: reXReply },
-      // ];
+      thisSession[0]["chats"].push({ user: userPrompt, ReX: reXReply });
 
-      thisSession[0]["chats"].push({ user: userPrompt, ReX: reXReply })      
-    
       updatedSession = {
         id: id,
         date: formattedDate,
@@ -92,52 +87,42 @@ const Chat = () => {
       };
 
       try {
-        // let mock = new MockAdapter(axios, { onNoMatch: "throwException" });
-        // mock.onPut(`/sessions`).reply(200, updatedSession)
-        // let  mockAdapter = axios.defaults.adapter;
-        // mock.restore();
-        const response = await api.patch(`sessions/${id}/`, updatedSession)
-        setSessions(sessions.map(session => session.id == id ? response.data : session));
+        const response = await api.patch(`sessions/${id}/`, updatedSession);
+        setSessions(
+          sessions.map((session) =>
+            session.id == id ? response.data : session
+          )
+        );
         setUserPrompt("");
-        // axios.defaults.adapter = mockAdapter
-      }
-
-       catch (err) {
+      } catch (err) {
         console.log(`Error: ${err.message}`);
       }
-    // }, 100);
+    }, 2000);
   };
 
-  
   async function callOpenAIAPI() {
     const completion = await openai.chat.completions.create({
       messages: [
-        { role: "system", content: "You are a career advice assistant." },
         {
-          role: "user",
+          role: "system",
           content:
-            "I am thinking about changing my job but I am not sure where to start.",
-        },
-        {
-          role: "assistant",
-          content:
-            "Changing jobs can be a big step. Let's start by identifying what you are looking for in a new job. What's important to you? Company culture, job role, salary, location, or growth opportunities?",
+            "Your name is ReX. You are a career advice assistant. You give advice to the user about his career. Limit your response to 100 words.",
         },
       ],
       model: "gpt-3.5-turbo",
       max_tokens: 100,
     });
-   
-    setReXReply(completion.choices[0].message.content);     
+
+    setReXReply(completion.choices[0].message.content);
   }
 
   return (
-    <>
+    <Grid container style={{ display: matches ? "none" : "block" }}>
       <Navigation isChat={true} isEndedChats={false} />
-      <Grid style={{ ...ChatStyles.textDisplayBackground }}>
-        <Grid style={{ padding: "24px 0" }}>
-          <img src={Images.HomRex} alt="ReX" style={{ width: "105px" }} />
-        </Grid>
+      <Grid style={{ padding: "60px 24px", position: "fixed" }}>
+        <img src={Images.HomRex} alt="ReX" style={{ width: "105px" }} />
+      </Grid>
+      <Grid {...ChatStyles.textDisplayBackground}>
         <Grid>
           {thisSession.length === 0 ? (
             <ReXMessage reXMessage="..." key="loading" />
@@ -155,26 +140,28 @@ const Chat = () => {
             )
           )}
         </Grid>
-        <Grid style={{ ...ChatStyles.toSendArea }}>
-          <Textarea
-            style={{ ...ChatStyles.textArea }}
-            name="Soft"
-            placeholder="Type a message to ReX ..."
-            variant="soft"
-            onChange={(e) => setUserPrompt(e.target.value)}
-            onFocus={(e) => e.preventDefault()}
-            value={userPrompt}
-          />
-          <Button style={{ ...ChatStyles.sendButton }} onClick={handleSubmit}>
-            <img
-              src={Images.SendButton}
-              alt="send"
-              style={{ ...ChatStyles.sendButtonImage }}
+        {thisSession[0] && !thisSession[0].isSessionEnded ? (
+          <Grid {...ChatStyles.toSendArea}>
+            <Textarea
+              {...ChatStyles.textArea}
+              name="Soft"
+              placeholder="Type a message to ReX ..."
+              variant="soft"
+              onChange={(e) => setUserPrompt(e.target.value)}
+              onFocus={(e) => e.preventDefault()}
+              value={userPrompt}
             />
-          </Button>
-        </Grid>
+            <Button {...ChatStyles.sendButton} onClick={handleSubmit}>
+              <img
+                src={Images.SendButton}
+                alt="send"
+                {...ChatStyles.sendButtonImage}
+              />
+            </Button>
+          </Grid>
+        ) : null}
       </Grid>
-    </>
+    </Grid>
   );
 };
 

@@ -1,11 +1,4 @@
 const AllStyles = {
-  homeOutline: {
-    sx:{
-      width: {xxl: '53%', xl: '53%', lg: '53%', md: '100%', sm: '100%', xs: '100%'},
-      display: "flex",
-      textAlign: "center",
-    }
-  },
   navigationBar: {
     sx: {
       display: "flex",
@@ -16,7 +9,7 @@ const AllStyles = {
       justifyContent: "space-between",
       background: "rgba(255, 255, 255, 1)",
       position: "fixed",
-      width: {xxl: '50%', md: '50%', sm: '98%', xs: '96%'},
+      width: '98%',
     }    
   },
   navigationRight: {
@@ -152,29 +145,51 @@ const AllStyles = {
     }
   },
   endedChatsTitle: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    padding: "24px 0",
+    sx: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      padding: "24px 0",
+    }
   },
-  endedChatsBody: {
-    // display: "flex",
-    // flexDirection: "column",
-    // gap: "150px",
-    // // alignSelf: 'stretch',
-  },
+  
   startAnotherChatButtonGrid: {
-    display: "flex",
-    padding: "24px 24px 36px 24px",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    // gap: "150px",
-    borderRadius: "24px 24px 0px 0px",
-    border: "1px solid var(--Greyscale-100, #F5F5F5)",
-    background: "var(--Others-White, #FFF)",
-    position: 'relative',
+    sx: {
+      display: "flex",
+      padding: "24px 24px 36px 24px",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: "24px 24px 0px 0px",
+      border: "1px solid var(--Greyscale-100, #F5F5F5)",
+      background: "var(--Others-White, #FFF)",
+      position: 'relative',
+    }
   },
+
+  optionsMenu:{
+    sx: {
+      borderRadius: '16px',
+      boxShadow: '0px 20px 100px 0px rgba(4, 6, 15, 0.08)',
+      display: 'inlineFlex',
+      padding: '20px 28px 20px 20px',
+      flexDirection: 'column',
+      alignItems: 'flex-end',
+      gap: '16px',
+      width: '100%',
+    }
+  },
+  optonsMenuItem:{
+    sx:{
+      color: 'var(--Greyscale-900, #212121)',
+      fontFamily: 'Urbanist',
+      fontSize: '16px',
+      fontStyle: 'normal',
+      fontWeight: 600,
+      lineHeight: '140%',
+      letterSpacing: '0.2px',
+    }
+  }
 };
 
 export default AllStyles;

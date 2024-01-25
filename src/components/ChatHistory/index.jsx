@@ -16,36 +16,32 @@ const ChatHistory = ({ id, date, lasttext, sessionEnded, handleDelete }) => {
   };
   
   return (
-    <Grid container justifyContent="flex-start" alignItems="center">
+    <Grid container flexDirection="row-reverse" justifyContent="flex-end" alignItems="start">
       <Grid item xs={sessionEnded ? 4 : 0 } sx={{display: !dragged && 'none' }}>        
-         <Button style={{ ...chatHistoryStyles.deleteButton }} onClick={handleDelete}>
+         <Button { ...chatHistoryStyles.deleteButton } onClick={handleDelete}>
             <img src={Images.Trash} alt="Delete" />
           </Button>       
       </Grid>
       <Grid
         item
-        style={
-          sessionEnded
-            ? { ...chatHistoryStyles.draggable, ...chatHistoryStyles.outLine }
-            : { ...chatHistoryStyles.outLine }
-        }
+        { ...chatHistoryStyles.outLine }
         xs={dragged ? 10 : 12}
         onDoubleClick={handleLink}
-        onClick={sessionEnded ? handleDrag : null}        
+        onClick={sessionEnded ? handleDrag : handleLink}        
       >
         <Grid>
           <img src={Images.HomRex} alt="ReX" style={{ width: "80px" }} />
         </Grid>
-        <Grid style={{ ...chatHistoryStyles.text }}>
+        <Grid { ...chatHistoryStyles.text }>
           {sessionEnded == true ? (
-            <Grid style={{ ...chatHistoryStyles.title }}>ReX - {date}</Grid>
+            <Grid { ...chatHistoryStyles.title }>ReX - {date}</Grid>
           ) : (
-            <Grid style={{ ...chatHistoryStyles.title }}>ReX</Grid>
+            <Grid { ...chatHistoryStyles.title }>ReX</Grid>
           )}
-          <Grid style={{ ...chatHistoryStyles.body }}>{lasttext}</Grid>
+          <Grid { ...chatHistoryStyles.body }>{lasttext}</Grid>
         </Grid>
         {sessionEnded == false ? (
-          <Grid>
+          <Grid paddingTop='25px'>
             <img src={Images.Typing} alt="typing" />
           </Grid>
         ) : null}

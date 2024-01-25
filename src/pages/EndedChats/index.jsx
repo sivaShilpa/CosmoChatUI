@@ -2,11 +2,12 @@ import React, {useState, useEffect} from 'react'
 import { Grid } from '@mui/material';
 import Navigation from '../../components/Navigation';
 import ChatHistory from '../../components/ChatHistory';
-import AllStyles from '../../styles/home';
-import api from '../../api/sessions'
+import api from '../../api/sessions';
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const EndedChats = () => {
   const [sessions, setSessions] = useState([]);
+  const matches = useMediaQuery('(min-width:600px)');
 
   useEffect(() => {
     const fetchSessions = async () => {
@@ -49,16 +50,15 @@ const EndedChats = () => {
   };
 
   return (
-    <Grid>
+    <Grid container style={{ display: matches ? "none" : "block" }}>
         <Navigation isChat={false} isEndedChats={true} />
-        <Grid container style={{ padding:"70px 20px" }}>
+        <Grid container style={{ padding:"70px 10px" }}>
             {sessions.map((session) =>
               session.isSessionEnded ? (
                 <ChatHistory
                   key={session.id}
                   id={session.id}
                   date={session.date}
-                  session
                   lasttext={
                     session.chats
                       ? session.chats[session.chats.length - 1].ReX[
@@ -66,7 +66,7 @@ const EndedChats = () => {
                         ]
                       : ""
                   }
-                  ended={session.isSessionEnded}
+                  sessionEnded={session.isSessionEnded}
                   handleDelete={() => handleDelete(session.id)}
                 />
               ) : null

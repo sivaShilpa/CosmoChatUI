@@ -9,6 +9,9 @@ import Search from '../assets/Search.png';
 import Options from '../assets/Options.png';
 import SendButton from '../assets/sendButton.png';
 import Trash from '../assets/Trash.png';
+import Clear from '../assets/clearIcon.png';
+import Export from '../assets/ExportIcon.png';
+import End from '../assets/EndIcon.png';
 
 const Images = {
   NavRex: NavigationRex,
@@ -22,6 +25,9 @@ const Images = {
   Options: Options,
   SendButton: SendButton,
   Trash: Trash,
+  Clear: Clear,
+  Export: Export,
+  End: End,
 };
 
 export default Images;

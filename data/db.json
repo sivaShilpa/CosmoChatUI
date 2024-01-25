@@ -1,27 +1,71 @@
 {
   "sessions": [
     {
-      "id": "1",
-      "date": "Jan 23, 2024",
+      "id": "5",
+      "date": "Jan 25, 2024",
       "chats": [
         {
           "ReX": [
             "Hello Andrew, I am ReX. 😁",
             "What aspect of your career would you like guidance on?"
           ]
+        },
+        {
+          "user": "Hi",
+          "ReX": ""
+        },
+        {
+          "user": "I would like to change my career. How can I become an AI engineer?\n",
+          "ReX": ""
+        },
+        {
+          "user": "How can I become an AI Engineer?",
+          "ReX": "Once you have identified what you are looking for in a new job, here are some steps to help you get started:\n\n1. Self-assessment: Evaluate your skills, strengths, and interests. Reflect on your past experiences and identify what you enjoyed and what you want to avoid in your next job.\n\n2. Research: Conduct thorough research on industries and job roles that align with your interests and goals. Look for opportunities in sectors that are growing or have future potential.\n\n3. Networking: Leverage your"
+        },
+        {
+          "user": "How can I become an AI Engineer?",
+          "ReX": "Once you have identified your priorities, you can start exploring potential job options. Here are some steps to help you get started:\n\n1. Self-Reflection: Take some time to reflect on your skills, interests, and values. Consider the tasks you enjoy doing, your long-term goals, and what you value in a workplace.\n\n2. Research: Explore different industries and job roles that align with your interests and goals. Look for job descriptions to understand the qualifications and skills required for those positions.\n\n3."
+        },
+        {
+          "user": "How can I become an AI Engineer?",
+          "ReX": ""
+        },
+        {
+          "user": "Hello Rex, I want to change my career.",
+          "ReX": "Once you have identified your priorities, it will be easier to narrow down your job search. Here are some steps to help you get started:\n\n1. Assess your skills and interests: Take some time to reflect on your current skills and interests. What are your strengths and what do you enjoy doing? This will help you determine what type of job or industry you might be interested in.\n\n2. Research potential industries and job roles: Explore different industries and job roles that align with your skills and interests. Look"
+        },
+        {
+          "user": "Hi ReX I would like to change my career.",
+          "ReX": "Once you have identified what you are looking for, here are a few steps to help you get started on changing your job:\n\n1. Self-assessment: Evaluate your skills, interests, and values. Determine what kind of work aligns with your passions and strengths.\n\n2. Research: Explore industries and job roles that align with your interests and skills. Look for job descriptions and requirements to get an idea of what employers are looking for.\n\n3. Networking: Connect with professionals in the industries or roles you"
+        },
+        {
+          "user": "Hi ReX, I would like to change my career.",
+          "ReX": "As a career advice assistant, I understand that choosing a career path can be overwhelming. To provide you with meaningful advice, it would be helpful to have some context about your current situation, interests, and goals. However, I can offer some general guidance.\n\nFirst and foremost, self-reflection is crucial for making an informed career decision. Assess your skills, strengths, and values, as well as your interests and passions. Consider what work environment would suit you best and what motivates you to excel.\n\n"
+        },
+        {
+          "user": "Hi",
+          "ReX": ""
+        },
+        {
+          "user": "Hi Rex",
+          "ReX": "Based on my understanding of your situation, it seems like you're unsure about your career path. My advice is to take a moment to identify your interests and passions. Reflect on the activities that make you happy and fulfilled. Once you have a clearer understanding of your passion, explore different career options and consider the skills and qualifications required. Try talking to professionals in those fields to gain insights. Also, don't be afraid to experiment and take risks. Remember, a successful career is built on personal satisfaction and"
         }
       ],
       "isSessionEnded": true
     },
     {
-      "id": "2",
-      "date": "Jan 23, 2024",
+      "id": "6",
+      "date": "Jan 25, 2024",
       "chats": [
         {
           "ReX": [
             "Hello Andrew, I am ReX. 😁",
             "What aspect of your career would you like guidance on?"
           ]
+        },
+        {
+          "user": "Hi",
+          "ReX": ""
         }
       ],
       "isSessionEnded": false
