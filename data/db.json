@@ -56,6 +56,12 @@
     {
       "id": "6",
       "date": "Jan 25, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "id": "7",
+      "date": "Jan 26, 2024",
       "chats": [
         {
           "ReX": [
@@ -64,8 +70,16 @@
           ]
         },
         {
-          "user": "Hi",
+          "user": "Hi ReX I would like to change my career to Animator.",
           "ReX": ""
+        },
+        {
+          "user": "Hi ReX are you there?",
+          "ReX": "Based on the limited information you've provided, it's difficult to offer tailored advice for your career. However, I suggest reflecting on your interests, skills, and values to identify areas that align with your passions. Conduct thorough research into industries you find appealing and seek out opportunities to gain experience or education in those fields. Networking can also be valuable for career growth. Remember, it's okay to explore different paths and make changes along the way. Trust your instincts and be proactive in pursuing your goals."
+        },
+        {
+          "user": "Thank you!",
+          "ReX": "Based on the limited information provided, it's challenging to give specific career advice. However, it's essential to identify your interests, skills, and values to find a fulfilling career. Consider taking personality assessments or exploring various fields through internships, volunteering, or informational interviews. Set clear goals and create a plan to achieve them. Networking and building connections in your chosen industry can also be valuable. Remember, career paths are often not linear, so remain adaptable and open to new opportunities. Regularly assess your"
         }
       ],
       "isSessionEnded": false

@@ -8,6 +8,7 @@ import ChatHistory from "../../components/ChatHistory";
 import Navigation from "../../components/Navigation";
 import { useNavigate } from "react-router";
 import useMediaQuery from '@mui/material/useMediaQuery';
+import PREVLOC from '../../constants/global';
 
 function Home() {
   const [sessions, setSessions] = useState([]);
@@ -112,9 +113,9 @@ function Home() {
 
   return (
     <Grid container style={{ display: matches ? "none" : "block" }}>
-      <Grid item>
+      {/* <Grid item>
         <Navigation isChat={false} isEndedChats={false} />
-      </Grid>
+      </Grid> */}
       {sessions.length === 0 ? (
         <Grid item {...AllStyles.homeBody}>
           <Grid {...AllStyles.homeRex}>
@@ -196,7 +197,7 @@ function Home() {
                   date={session.date}
                   session
                   lasttext={
-                    session.chats
+                    session.chats.length
                       ? session.chats[session.chats.length - 1].ReX[
                           session.chats[session.chats.length - 1].ReX.length - 1
                         ]

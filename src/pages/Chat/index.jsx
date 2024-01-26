@@ -34,7 +34,7 @@ const Chat = () => {
   const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
   const openai = new OpenAI({ apiKey: API_KEY, dangerouslyAllowBrowser: true });
   const matches = useMediaQuery("(min-width:600px)");
-
+  
   useEffect(() => {
     const fetchSessions = async () => {
       try {
@@ -60,7 +60,7 @@ const Chat = () => {
       };
     };
     fetchSessions();
-  }, [thisSession]);
+  }, []);
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
@@ -118,7 +118,9 @@ const Chat = () => {
 
   return (
     <Grid container style={{ display: matches ? "none" : "block" }}>
-      <Navigation isChat={true} isEndedChats={false} />
+      {/* <Grid>
+        <Navigation isChat={true} isEndedChats={false} />
+      </Grid> */}
       <Grid style={{ padding: "60px 24px", position: "fixed" }}>
         <img src={Images.HomRex} alt="ReX" style={{ width: "105px" }} />
       </Grid>
