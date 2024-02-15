@@ -5,7 +5,7 @@ const ChatStyles = {
       padding: "24px 24px 150px 24px",
       display: "flex",
       flexDirection: "column",
-    }
+    },
   },
   reXMessage: {
     sx: {
@@ -17,7 +17,7 @@ const ChatStyles = {
       gap: "10px",
       borderRadius: "8px 20px 20px 20px",
       background: "var(--Greyscale-100, #F5F5F5)",
-    }
+    },
   },
   reXMessageText: {
     sx: {
@@ -28,10 +28,10 @@ const ChatStyles = {
       fontWeight: 500,
       lineHeight: "140%",
       letterSpacing: "0.2px",
-    }
+    },
   },
   userMessage: {
-    sx:{
+    sx: {
       display: "flex",
       padding: "16px 24px",
       width: "300px",
@@ -40,10 +40,10 @@ const ChatStyles = {
       gap: "10px",
       borderRadius: "20px 20px 8px 20px",
       background: "var(--Primary-500, #6949FF)",
-    }    
+    },
   },
   userMessageText: {
-    sx:{
+    sx: {
       color: "var(--Others-White, #FFF)",
       fontFamily: "Satoshi",
       fontSize: "18px",
@@ -51,7 +51,7 @@ const ChatStyles = {
       fontWeight: 500,
       lineHeight: "140%",
       letterSpacing: "0.2px",
-    }
+    },
   },
   toSendArea: {
     sx: {
@@ -62,7 +62,7 @@ const ChatStyles = {
       bottom: 48,
       width: "90%",
       margin: "24px 0",
-    }
+    },
   },
   textArea: {
     sx: {
@@ -75,18 +75,18 @@ const ChatStyles = {
       flex: "1 0 0",
       borderRadius: "12px",
       background: "var(--Greyscale-50, #FAFAFA)",
-    }
+    },
   },
   sendButton: {
-    sx:{
+    sx: {
       padding: "16px",
       justifyContent: "center",
       alignItems: "center",
       gap: "10px",
       borderRadius: "100px",
       background:
-        "var(--Gradients-Gradident-Purple, linear-gradient(286deg, #6949FF 0%, #876DFF 100%))",      
-    }    
+        "var(--Gradients-Gradident-Purple, linear-gradient(286deg, #6949FF 0%, #876DFF 100%))",
+    },
   },
   sendButtonImage: {
     sx: {
@@ -96,7 +96,7 @@ const ChatStyles = {
       padding: "2px",
       justifyContent: "center",
       alignItems: "center",
-    }
+    },
   },
 };
 

@@ -6,12 +6,12 @@ import AllStyles from "../../styles/home";
 import api from "../../api/sessions";
 import ChatHistory from "../../components/ChatHistory";
 import { useNavigate } from "react-router";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Home() {
   const [sessions, setSessions] = useState([]);
   const navigator = useNavigate();
-  const matches = useMediaQuery('(min-width:600px)');
+  const matches = useMediaQuery("(min-width:600px)");
 
   const reXIntro = [
     "Hello Andrew, I am ReX. 😁",
@@ -144,7 +144,7 @@ function Home() {
           </Grid>
           <Grid style={{ textAlign: "center" }}>
             <Button {...AllStyles.startChatButton} onClick={handleSubmit}>
-              <Typography { ...AllStyles.startChatButtonText }>
+              <Typography {...AllStyles.startChatButtonText}>
                 Start Chat With ReX
               </Typography>
             </Button>
@@ -152,8 +152,8 @@ function Home() {
         </Grid>
       ) : (
         <Grid item style={{ paddingTop: "50px" }}>
-          <Grid { ...AllStyles.endedChatsTitle }>
-            <Grid { ...AllStyles.endedChats }>Active Chats</Grid>
+          <Grid {...AllStyles.endedChatsTitle}>
+            <Grid {...AllStyles.endedChats}>Active Chats</Grid>
           </Grid>
           <Grid>
             {sessions?.map((session) =>
@@ -164,19 +164,24 @@ function Home() {
                   date={session.date}
                   lasttext={
                     session.chats.length
-                      ? session.chats[session.chats.length - 1].ReX.slice(0,100)
+                      ? session.chats[session.chats.length - 1].ReX.slice(
+                          0,
+                          100
+                        )
                       : ""
                   }
                   sessionEnded={session.isSessionEnded}
                   handleDelete={null}
+                  isActivity={false}
+                  chatsLength={session.chats.length}
                 />
               ) : null
             )}
           </Grid>
-          <Grid { ...AllStyles.endedChatsTitle }>
-            <Grid { ...AllStyles.endedChats }>Ended Chats </Grid>
+          <Grid {...AllStyles.endedChatsTitle}>
+            <Grid {...AllStyles.endedChats}>Ended Chats </Grid>
             <Grid>
-              <Link { ...AllStyles.seeAllLink } href="/endedChats">
+              <Link {...AllStyles.seeAllLink} href="/endedChats">
                 See All
               </Link>
             </Grid>
@@ -198,16 +203,15 @@ function Home() {
                   }
                   sessionEnded={session.isSessionEnded}
                   handleDelete={() => handleDelete(session.id)}
+                  isActivity={false}
+                  chatsLength={session.chats.length}
                 />
               ) : null
             )}
           </Grid>
-          <Grid { ...AllStyles.startAnotherChatButtonGrid }>
-            <Button
-              { ...AllStyles.startChatButton }
-              onClick={handleSubmit}
-            >
-              <Typography { ...AllStyles.startChatButtonText }>
+          <Grid {...AllStyles.startAnotherChatButtonGrid}>
+            <Button {...AllStyles.startChatButton} onClick={handleSubmit}>
+              <Typography {...AllStyles.startChatButtonText}>
                 Start Another Chat With ReX
               </Typography>
             </Button>

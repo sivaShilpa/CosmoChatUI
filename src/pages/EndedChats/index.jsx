@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react'
-import { Grid } from '@mui/material';
-import ChatHistory from '../../components/ChatHistory';
-import api from '../../api/sessions';
+import React, { useState, useEffect } from "react";
+import { Grid } from "@mui/material";
+import ChatHistory from "../../components/ChatHistory";
+import api from "../../api/sessions";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const EndedChats = () => {
   const [sessions, setSessions] = useState([]);
-  const matches = useMediaQuery('(min-width:600px)');  
+  const matches = useMediaQuery("(min-width:600px)");
 
   useEffect(() => {
     const fetchSessions = async () => {
@@ -39,18 +39,18 @@ const EndedChats = () => {
   };
 
   const handleDelete = async (id) => {
-    try{
+    try {
       const ID = id.toString();
       await api.delete(`/sessions/${ID}`);
-      setSessions(sessions.filter(session => session.id !== ID))
-    }catch(err){
+      setSessions(sessions.filter((session) => session.id !== ID));
+    } catch (err) {
       console.log(`Error: ${err.message}`);
     }
   };
 
   return (
     <Grid container style={{ display: matches ? "none" : "block" }}>
-      <Grid container style={{ padding:"70px 10px" }}>
+      <Grid container style={{ padding: "70px 10px" }}>
         {sessions.map((session) =>
           session.isSessionEnded ? (
             <ChatHistory
@@ -66,12 +66,14 @@ const EndedChats = () => {
               }
               sessionEnded={session.isSessionEnded}
               handleDelete={() => handleDelete(session.id)}
+              isActivity={false}
+              chatsLength={session.chats.length}
             />
           ) : null
         )}
       </Grid>
     </Grid>
-  )
-}
+  );
+};
 
 export default EndedChats;

@@ -25,13 +25,13 @@ function Navigation({ isChat, isEndedChats, isActvity }) {
   const handlClose = () => {
     setOpn((prev) => !prev);
   };
-  
+
   const handleClickClose = async () => {
     setOpn((prev) => !prev);
     const ID = id.id;
     const response = await api.get("/sessions");
     setSessions(response.data);
-    setThisSession(...response.data.filter((session) => session.id == id.id));    
+    setThisSession(...response.data.filter((session) => session.id == id.id));
     thisSession.isSessionEnded = true;
     const res = await api.put(`/sessions/${ID}`, thisSession);
     setSessions(
@@ -70,17 +70,21 @@ function Navigation({ isChat, isEndedChats, isActvity }) {
       setOpn(true);
     }
   };
-  
+
   return (
     <Grid {...AllStyles.navigationBar}>
-      {isEndedChats ? (
+      {isEndedChats || isActvity ? (
         <Grid {...AllStyles.navigationLeft}>
           <Grid style={{ margin: "5px" }}>
             <Link href="/">
               <img src={Images.BackArrow} alt="NavRex" />
             </Link>
           </Grid>
-          <Grid {...AllStyles.navigationName}>Ended Chats</Grid>
+          {isActvity ? (
+            <Grid {...AllStyles.navigationName}>Activity</Grid>
+          ) : (
+            <Grid {...AllStyles.navigationName}>Ended Chats</Grid>
+          )}
         </Grid>
       ) : isChat ? (
         <Grid {...AllStyles.navigationLeft}>

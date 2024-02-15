@@ -62,7 +62,6 @@ const Chat = () => {
     };
     fetchSessions();
   }, []);
-  
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
@@ -128,7 +127,7 @@ const Chat = () => {
       <Grid {...ChatStyles.textDisplayBackground}>
         <Grid>
           {thisSession?.chats?.length
-            ? thisSession?.chats?.map((chat, i) => 
+            ? thisSession?.chats?.map((chat, i) =>
                 Object.keys(chat).map((k) =>
                   k === "ReX" ? (
                     <ReXMessage reXMessage={chat.ReX} key={"rex" + i} />

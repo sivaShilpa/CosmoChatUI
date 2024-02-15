@@ -6,17 +6,16 @@ import EndedChats from "./pages/EndedChats";
 import Layout from "./Layout";
 import Activity from "./pages/Activity";
 
-
 function App() {
   return (
     <>
       <Routes>
-        <Route element={<Layout/>}>
-          <Route path="/" index element={<Home />} ></Route>
+        <Route element={<Layout />}>
+          <Route path="/" index element={<Home />}></Route>
           <Route path="/sessions/:id" element={<Chat />}></Route>
-          <Route path="/endedChats" element={<EndedChats />}></Route>      
-          <Route path="/activity" element={<Activity />}></Route>      
-        </Route>  
+          <Route path="/endedChats" element={<EndedChats />}></Route>
+          <Route path="/activity" element={<Activity />}></Route>
+        </Route>
       </Routes>
     </>
   );
