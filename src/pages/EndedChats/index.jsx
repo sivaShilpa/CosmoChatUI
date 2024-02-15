@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { Grid } from '@mui/material';
-import Navigation from '../../components/Navigation';
 import ChatHistory from '../../components/ChatHistory';
 import api from '../../api/sessions';
 import useMediaQuery from "@mui/material/useMediaQuery";
-import PREVLOC from '../../constants/global';
 
 const EndedChats = () => {
   const [sessions, setSessions] = useState([]);
@@ -52,29 +50,26 @@ const EndedChats = () => {
 
   return (
     <Grid container style={{ display: matches ? "none" : "block" }}>
-      {/* <Grid>
-        <Navigation isChat={false} isEndedChats={true} />
-      </Grid> */}
       <Grid container style={{ padding:"70px 10px" }}>
-          {sessions.map((session) =>
-            session.isSessionEnded ? (
-              <ChatHistory
-                key={session.id}
-                id={session.id}
-                date={session.date}
-                lasttext={
-                  session.chats.length
-                    ? session.chats[session.chats.length - 1].ReX[
-                        session.chats[session.chats.length - 1].ReX.length - 1
-                      ]
-                    : ""
-                }
-                sessionEnded={session.isSessionEnded}
-                handleDelete={() => handleDelete(session.id)}
-              />
-            ) : null
-          )}
-        </Grid>
+        {sessions.map((session) =>
+          session.isSessionEnded ? (
+            <ChatHistory
+              key={session.id}
+              id={session.id}
+              date={session.date}
+              lasttext={
+                session.chats.length
+                  ? session.chats[session.chats.length - 1].ReX[
+                      session.chats[session.chats.length - 1].ReX.length - 1
+                    ]
+                  : ""
+              }
+              sessionEnded={session.isSessionEnded}
+              handleDelete={() => handleDelete(session.id)}
+            />
+          ) : null
+        )}
+      </Grid>
     </Grid>
   )
 }

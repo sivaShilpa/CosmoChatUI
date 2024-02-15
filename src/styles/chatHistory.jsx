@@ -62,8 +62,80 @@ const chatHistoryStyles = {
       background: 'var(--alerts-status-error, #F75555)',
       position: 'absolute', 
       zIndex: 0,
+      boxShadow: 0,
+      "&:hover":{
+        background: 'var(--alerts-status-error, #F75555)',
+        boxShadow: 0,
+      }
     }    
   }, 
+  popUp: {
+    sx:{
+      width: '400px',
+      height: '800px',
+      padding: '48px, 32px, 40px, 32px',
+      borderRadius: '44px',
+      gap: '32px', 
+      display: 'flex', 
+      flexDirection: 'column',
+      justifyContent: 'center',
+      textAlign: 'center',
+    }
+  },
+  popUpTextTitle:{
+    sx:{
+      fontFamily: "Urbanist",
+      fontSize: "24px",
+      fontWeight: 700,
+      lineHeight: '29px',
+      letterSpacing: '0em',
+      textAlign: 'center',
+      color: "#212121",
+    }
+  },
+  popUpButtons: {
+    sx: {
+      display: "flex",
+      flexDirection: 'column',
+      gap: "12px",
+    }
+  },
+  buttonDelete: {
+    sx:{
+      width: "276px",
+      height: "58px",
+      padding: "18px, 16px, 18px, 16px",
+      borderRadius: "100px",
+      gap: "10px",    
+      background: "#6949FF",
+      textTransform: "Capitalize",
+      color:"#FFFFFF",
+      font: "Urbanist",
+      weight: 700,
+      size: "16px",
+      "&:hover": {
+        background: "#6949FF",
+      }
+    }
+  },
+  buttonCancel:{
+    sx:{
+      width: "276px",
+      height: "58px",
+      padding: "18px, 16px, 18px, 16px",
+      borderRadius: "100px",
+      gap: "10px",    
+      background: "#F0EDFF",
+      textTransform: "Capitalize",
+      color:"#6949FF",
+      font: "Urbanist",
+      weight: 700,
+      size: "16px",
+      "&:hover": {
+        background: "#F0EDFF",
+      }
+    }
+  }
 };
 
 export default chatHistoryStyles;

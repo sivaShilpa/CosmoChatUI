@@ -2,7 +2,7 @@ const ChatStyles = {
   textDisplayBackground: {
     sx: {
       height: "auto",
-      padding: "200px 24px 150px 24px",
+      padding: "24px 24px 150px 24px",
       display: "flex",
       flexDirection: "column",
     }

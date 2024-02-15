@@ -8,7 +8,6 @@ const Layout = () => {
     const [isEndedChats, setIsEndedChats] = useState(false);
     const location = useLocation();
     useEffect(()=>{
-        console.log(location)
         if(location.pathname=='/'){
         setIsChat(false);
         setIsEndedChats(false);

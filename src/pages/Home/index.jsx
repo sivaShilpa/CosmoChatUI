@@ -5,10 +5,8 @@ import Images from "../../constants/images";
 import AllStyles from "../../styles/home";
 import api from "../../api/sessions";
 import ChatHistory from "../../components/ChatHistory";
-import Navigation from "../../components/Navigation";
 import { useNavigate } from "react-router";
 import useMediaQuery from '@mui/material/useMediaQuery';
-import PREVLOC from '../../constants/global';
 
 function Home() {
   const [sessions, setSessions] = useState([]);
@@ -113,9 +111,6 @@ function Home() {
 
   return (
     <Grid container style={{ display: matches ? "none" : "block" }}>
-      {/* <Grid item>
-        <Navigation isChat={false} isEndedChats={false} />
-      </Grid> */}
       {sessions.length === 0 ? (
         <Grid item {...AllStyles.homeBody}>
           <Grid {...AllStyles.homeRex}>
@@ -161,17 +156,15 @@ function Home() {
             <Grid { ...AllStyles.endedChats }>Active Chats</Grid>
           </Grid>
           <Grid>
-            {sessions.map((session) =>
+            {sessions?.map((session) =>
               !session.isSessionEnded ? (
                 <ChatHistory
                   key={session.id}
                   id={session.id}
                   date={session.date}
                   lasttext={
-                    session.chats
-                      ? session.chats[session.chats.length - 1].ReX[
-                          session.chats[session.chats.length - 1].ReX.length - 1
-                        ]
+                    session.chats.length
+                      ? session.chats[session.chats.length - 1].ReX.slice(0,100)
                       : ""
                   }
                   sessionEnded={session.isSessionEnded}

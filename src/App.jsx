@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Chat from "./pages/Chat";
 import EndedChats from "./pages/EndedChats";
 import Layout from "./Layout";
-import Navigation from "./components/Navigation";
+import Activity from "./pages/Activity";
 
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
           <Route path="/" index element={<Home />} ></Route>
           <Route path="/sessions/:id" element={<Chat />}></Route>
           <Route path="/endedChats" element={<EndedChats />}></Route>      
+          <Route path="/activity" element={<Activity />}></Route>      
         </Route>  
       </Routes>
     </>

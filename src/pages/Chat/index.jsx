@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Button, Grid } from "@mui/material";
-import Navigation from "../../components/Navigation";
 import Textarea from "@mui/joy/Textarea";
 import Images from "../../constants/images";
 import ChatStyles from "../../styles/chat";
@@ -16,7 +15,7 @@ const Chat = () => {
   const [userPrompt, setUserPrompt] = useState("");
   const [reXReply, setReXReply] = useState("");
   const [sessions, setSessions] = useState([]);
-  const [thisSession, setThisSession] = useState([]);
+  const [thisSession, setThisSession] = useState({});
   const months = [
     "Jan",
     "Feb",
@@ -34,18 +33,20 @@ const Chat = () => {
   const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
   const openai = new OpenAI({ apiKey: API_KEY, dangerouslyAllowBrowser: true });
   const matches = useMediaQuery("(min-width:600px)");
-  
+  let chatKeys = [];
+
   useEffect(() => {
     const fetchSessions = async () => {
       try {
         const response = await api.get("/sessions");
-
+        setSessions(response.data);
+        setThisSession(
+          response.data.find(
+            (session) => parseInt(session?.id, 10) === parseInt(id, 10)
+          )
+        );
         handleScroll();
         window.addEventListener("scroll", handleScroll);
-        if (response && response.data) {
-          setSessions(response.data);
-          setThisSession(sessions.filter((session) => session["id"] == id));
-        }
       } catch (err) {
         if (err.response) {
           console.log(err.response.data);
@@ -61,6 +62,7 @@ const Chat = () => {
     };
     fetchSessions();
   }, []);
+  
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
@@ -77,14 +79,16 @@ const Chat = () => {
       const year = date.getFullYear();
       const formattedDate = months[month] + " " + day + ", " + year;
 
-      thisSession[0]["chats"].push({ user: userPrompt, ReX: reXReply });
-
+      thisSession.chats.push({ user: userPrompt, ReX: reXReply });
       updatedSession = {
         id: id,
         date: formattedDate,
-        chats: thisSession[0]["chats"],
-        isSessionEnded: thisSession[0]["isSessionEnded"],
+        chats: thisSession.chats,
+        isSessionEnded: thisSession.isSessionEnded,
       };
+      for (let i = 0; i < updatedSession.chats.length; i++) {
+        chatKeys.push(Object.keys(updatedSession.chats[i]));
+      }
 
       try {
         const response = await api.patch(`sessions/${id}/`, updatedSession);
@@ -97,7 +101,7 @@ const Chat = () => {
       } catch (err) {
         console.log(`Error: ${err.message}`);
       }
-    }, 2000);
+    }, 5000);
   };
 
   async function callOpenAIAPI() {
@@ -106,7 +110,7 @@ const Chat = () => {
         {
           role: "system",
           content:
-            "Your name is ReX. You are a career advice assistant. You give advice to the user about his career. Limit your response to 100 words.",
+            "Your name is ReX. You are a career advice assistant. You give advice to the user about his career. Limit your response to 100 words. You remember the previous conversations and details provided in the previous conversations.",
         },
       ],
       model: "gpt-3.5-turbo",
@@ -118,31 +122,24 @@ const Chat = () => {
 
   return (
     <Grid container style={{ display: matches ? "none" : "block" }}>
-      {/* <Grid>
-        <Navigation isChat={true} isEndedChats={false} />
-      </Grid> */}
-      <Grid style={{ padding: "60px 24px", position: "fixed" }}>
+      <Grid style={{ padding: "40px 24px 24px 24px", position: "sticky" }}>
         <img src={Images.HomRex} alt="ReX" style={{ width: "105px" }} />
       </Grid>
       <Grid {...ChatStyles.textDisplayBackground}>
         <Grid>
-          {thisSession.length === 0 ? (
-            <ReXMessage reXMessage="..." key="loading" />
-          ) : (
-            thisSession[0] &&
-            thisSession[0].chats.map((chat, i) =>
-              i === 0 ? (
-                <ReXMessage reXMessage={chat.ReX} key={"rex" + i} />
-              ) : (
-                <Grid key={i}>
-                  <UserMessage userMessage={chat.user} key={"user" + i} />
-                  <ReXMessage reXMessage={chat.ReX} key={"rex" + i} />
-                </Grid>
+          {thisSession?.chats?.length
+            ? thisSession?.chats?.map((chat, i) => 
+                Object.keys(chat).map((k) =>
+                  k === "ReX" ? (
+                    <ReXMessage reXMessage={chat.ReX} key={"rex" + i} />
+                  ) : (
+                    <UserMessage userMessage={chat.user} key={"user" + i} />
+                  )
+                )
               )
-            )
-          )}
+            : null}
         </Grid>
-        {thisSession[0] && !thisSession[0].isSessionEnded ? (
+        {thisSession && !thisSession.isSessionEnded ? (
           <Grid {...ChatStyles.toSendArea}>
             <Textarea
               {...ChatStyles.textArea}
