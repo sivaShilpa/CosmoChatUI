@@ -2,7 +2,7 @@
   "sessions": [
     {
       "id": "1",
-      "date": "Feb 15, 2024",
+      "date": "Feb 17, 2024",
       "chats": [
         {
           "ReX": [
@@ -11,19 +11,19 @@
           ]
         },
         {
-          "user": "I would like some advice on how to transition to a different career.",
+          "user": "Hi there, I would like some advice on switching my career from Animation to Software development.",
           "ReX": ""
         },
         {
-          "user": "I would like some advice on how to transition to a different career.",
-          "ReX": "Based on our previous conversations, I remember that you are interested in a career in technology and have a background in coding. My advice would be to continue developing your coding skills through online courses or by taking on coding projects. Additionally, consider networking with professionals in the tech industry, as connections can often lead to job opportunities. Lastly, it may also be beneficial to gain some practical experience through internships or freelance work to build up your portfolio. Remember to stay updated with the latest trends and technologies in the"
+          "user": "Hi there, I would like some advice on switching my career from Animation to Software development.",
+          "ReX": "Hi Andrew, I suggest focusing on tasks that showcase your skills and align with your career goals. Network with professionals in your field, attend workshops or courses to enhance your knowledge, and consider seeking a mentor for guidance. Keep track of your accomplishments and update your resume and online profiles regularly. Stay proactive and open to new opportunities that can help you advance in your career. Remember, consistency and dedication are key to career growth. Good luck!"
         }
       ],
       "isSessionEnded": true
     },
     {
       "id": "2",
-      "date": "Feb 15, 2024",
+      "date": "Feb 17, 2024",
       "chats": [
         {
           "ReX": [
@@ -36,25 +36,7 @@
     },
     {
       "id": "3",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "4",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "5",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "6",
-      "date": "Feb 15, 2024",
+      "date": "Feb 17, 2024",
       "chats": [
         {
           "ReX": [
@@ -63,214 +45,7 @@
           ]
         }
       ],
-      "isSessionEnded": true
-    },
-    {
-      "id": "7",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "8",
-      "date": "Feb 15, 2024",
-      "chats": [
-        {
-          "ReX": [
-            "Hello Andrew, I am ReX. 😁",
-            "What aspect of your career would you like guidance on?"
-          ]
-        }
-      ],
-      "isSessionEnded": true
-    },
-    {
-      "id": "9",
-      "date": "Feb 15, 2024",
-      "chats": [
-        {
-          "ReX": [
-            "Hello Andrew, I am ReX. 😁",
-            "What aspect of your career would you like guidance on?"
-          ]
-        }
-      ],
-      "isSessionEnded": true
-    },
-    {
-      "id": "10",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "11",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "12",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "13",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "14",
-      "date": "Feb 15, 2024",
-      "chats": [
-        {
-          "ReX": [
-            "Hello Andrew, I am ReX. 😁",
-            "What aspect of your career would you like guidance on?"
-          ]
-        }
-      ],
-      "isSessionEnded": true
-    },
-    {
-      "id": "15",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "16",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "17",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "18",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "19",
-      "date": "Feb 15, 2024",
-      "chats": [
-        {
-          "ReX": [
-            "Hello Andrew, I am ReX. 😁",
-            "What aspect of your career would you like guidance on?"
-          ]
-        }
-      ],
-      "isSessionEnded": true
-    },
-    {
-      "id": "20",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "21",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "22",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "23",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "24",
-      "date": "Feb 15, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "isSessionEnded": true,
-      "id": "25"
-    },
-    {
-      "id": "26",
-      "date": "Feb 16, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "chats": [],
-      "id": "27",
-      "isSessionEnded": true
-    },
-    {
-      "isSessionEnded": true,
-      "id": "28"
-    },
-    {
-      "isSessionEnded": true,
-      "id": "29"
-    },
-    {
-      "isSessionEnded": true,
-      "id": "30"
-    },
-    {
-      "chats": [],
-      "isSessionEnded": true,
-      "id": "31"
-    },
-    {
-      "chats": [],
-      "isSessionEnded": true,
-      "id": "32"
-    },
-    {
-      "chats": [],
-      "isSessionEnded": true,
-      "id": "33"
-    },
-    {
-      "id": "34",
-      "date": "Feb 16, 2024",
-      "isSessionEnded": true
-    },
-    {
-      "id": "35",
-      "date": "Feb 16, 2024",
-      "isSessionEnded": true
-    },
-    {
-      "id": "36",
-      "date": "Feb 16, 2024",
-      "chats": [],
-      "isSessionEnded": true
-    },
-    {
-      "id": "37",
-      "date": "Feb 16, 2024",
-      "chats": [
-        {
-          "ReX": [
-            "Hello Andrew, I am ReX. 😁",
-            "What aspect of your career would you like guidance on?"
-          ]
-        }
-      ],
-      "isSessionEnded": true
+      "isSessionEnded": false
     }
   ]
 }

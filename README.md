@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# CosmoChat UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+This is an app where the user named Andrew interacts with an openAI powered career advice assistant name ReX. This is a beginner mission done during my internship at RadicalX.
 
-## Available Scripts
+## Tools used
+Reacr.JS, Material UI, Framer Motion, Axios, Open AI. 
 
-In the project directory, you can run:
+## Acknowledgement 
+Special Thanks to my mentor Billy Bett for helping me get through my blockers and RadicalX CEO Talha Sabri for this opportunity. 
 
-### `npm start`
+## Screen Shots
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Welcome Page
+![welcomePage](./src/assets/screenshots/WelcomePage.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Home Page
+![HomePage](./src/assets/screenshots/HomePageWithOneMessage.png)
 
-### `npm test`
+### Chat Window with openAI response
+![ChatWindow](./src/assets/screenshots/OpenAIResponse.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Ended Chats List
+![EndedChats](./src//assets/screenshots/EndedChatsPage.png)
 
-### `npm run build`
+### Chat Menu
+![ChatMenu](./src/assets/screenshots/ChatMenu.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Delete Button on Home Page
+![DeleteButton](./src/assets/screenshots/DeleteButtonOnHomePage.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Activity Page
+![ActivityPage](./src/assets/screenshots/ActivityPage.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Loom Video
+Click [here](https://www.loom.com/share/4d74f124970447a99a97a609052f46c1?sid=d159bf20-6581-49d5-a951-5056bb52526f) to watch the demonstration.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## About RadicalX
+![RadicalX](https://i.imgur.com/1yxvh5u.png)
+RadicalX is pioneering an immersive digital world designed specifically for Gen Z developers.

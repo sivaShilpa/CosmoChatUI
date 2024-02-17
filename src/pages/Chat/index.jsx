@@ -70,14 +70,14 @@ const Chat = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let updatedSession = {};
-    callOpenAIAPI();
+    
     setTimeout(async function () {
       const date = new Date();
       const month = date.getMonth();
       const day = date.getDate();
       const year = date.getFullYear();
       const formattedDate = months[month] + " " + day + ", " + year;
-
+      callOpenAIAPI();
       thisSession.chats.push({ user: userPrompt, ReX: reXReply });
       updatedSession = {
         id: id,
@@ -109,7 +109,7 @@ const Chat = () => {
         {
           role: "system",
           content:
-            "Your name is ReX. You are a career advice assistant. You give advice to the user about his career. Limit your response to 100 words. You remember the previous conversations and details provided in the previous conversations.",
+            "Your name is ReX. You are a career advice assistant. You give advice to Andrew about his career as reply to his prompt. Limit your response to 100 words. You remember the previous conversations and details given by the user.",
         },
       ],
       model: "gpt-3.5-turbo",
