@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Button, Grid, Link, Typography } from "@mui/material";
+import {
+  Button,
+  CircularProgress,
+  Grid,
+  Link,
+  Typography,
+} from "@mui/material";
 import { motion } from "framer-motion";
 import Images from "../../constants/images";
 import AllStyles from "../../styles/home";
@@ -12,7 +18,7 @@ function Home() {
   const [sessions, setSessions] = useState([]);
   const navigator = useNavigate();
   const matches = useMediaQuery("(min-width:600px)");
-
+  const [loading, setLoading] = useState(true);
   const reXIntro = [
     "Hello Andrew, I am ReX. 😁",
     "What aspect of your career would you like guidance on?",
@@ -40,6 +46,7 @@ function Home() {
           signal: controller.signal,
         });
         setSessions(response.data.reverse());
+        setLoading(false);
       } catch (err) {
         if (err.response) {
           console.log(err.response.data);
@@ -53,7 +60,7 @@ function Home() {
     };
     fetchSessions();
   }, []);
-
+  
   const handleSubmit = async () => {
     const id = sessions.length
       ? (parseInt(sessions[0].id) + 1).toString()
@@ -111,7 +118,15 @@ function Home() {
 
   return (
     <Grid container style={{ display: matches ? "none" : "block" }}>
-      {sessions.length === 0 ? (
+      {loading ? (
+        <CircularProgress
+          sx={{
+            textAlign: "center",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        />
+      ) : sessions.length == 0 ? (
         <Grid item {...AllStyles.homeBody}>
           <Grid {...AllStyles.homeRex}>
             <img src={Images.HomRex} alt="homeRex" />
@@ -156,27 +171,29 @@ function Home() {
             <Grid {...AllStyles.endedChats}>Active Chats</Grid>
           </Grid>
           <Grid>
-            {sessions?.map((session) =>
-              !session.isSessionEnded ? (
-                <ChatHistory
-                  key={session.id}
-                  id={session.id}
-                  date={session.date}
-                  lasttext={
-                    session.chats.length
-                      ? session.chats[session.chats.length - 1].ReX.slice(
-                          0,
-                          100
-                        )
-                      : ""
-                  }
-                  sessionEnded={session.isSessionEnded}
-                  handleDelete={null}
-                  isActivity={false}
-                  chatsLength={session.chats.length}
-                />
-              ) : null
-            )}
+            {sessions?.length
+              ? sessions?.map((session) =>
+                  !session.isSessionEnded ? (
+                    <ChatHistory
+                      key={session.id}
+                      id={session.id}
+                      date={session.date}
+                      lasttext={
+                        session?.chats?.length > 0
+                          ? session.chats[session.chats.length - 1].ReX.slice(
+                              0,
+                              100
+                            )
+                          : ""
+                      }
+                      sessionEnded={session?.isSessionEnded}
+                      handleDelete={null}
+                      isActivity={false}
+                      chatsLength={session?.chats?.length}
+                    />
+                  ) : null
+                )
+              : null}
           </Grid>
           <Grid {...AllStyles.endedChatsTitle}>
             <Grid {...AllStyles.endedChats}>Ended Chats </Grid>
@@ -195,16 +212,17 @@ function Home() {
                   date={session.date}
                   session
                   lasttext={
-                    session.chats.length
-                      ? session.chats[session.chats.length - 1].ReX[
-                          session.chats[session.chats.length - 1].ReX.length - 1
-                        ]
+                    session?.chats?.length
+                      ? session.chats[session.chats.length - 1].ReX.slice(
+                          0,
+                          100
+                        )
                       : ""
                   }
                   sessionEnded={session.isSessionEnded}
                   handleDelete={() => handleDelete(session.id)}
                   isActivity={false}
-                  chatsLength={session.chats.length}
+                  chatsLength={session?.chats?.length}
                 />
               ) : null
             )}

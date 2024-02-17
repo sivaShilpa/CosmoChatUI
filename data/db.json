@@ -1,20 +1,92 @@
 {
   "sessions": [
     {
+      "id": "1",
+      "date": "Feb 15, 2024",
+      "chats": [
+        {
+          "ReX": [
+            "Hello Andrew, I am ReX. 😁",
+            "What aspect of your career would you like guidance on?"
+          ]
+        },
+        {
+          "user": "I would like some advice on how to transition to a different career.",
+          "ReX": ""
+        },
+        {
+          "user": "I would like some advice on how to transition to a different career.",
+          "ReX": "Based on our previous conversations, I remember that you are interested in a career in technology and have a background in coding. My advice would be to continue developing your coding skills through online courses or by taking on coding projects. Additionally, consider networking with professionals in the tech industry, as connections can often lead to job opportunities. Lastly, it may also be beneficial to gain some practical experience through internships or freelance work to build up your portfolio. Remember to stay updated with the latest trends and technologies in the"
+        }
+      ],
+      "isSessionEnded": true
+    },
+    {
+      "id": "2",
+      "date": "Feb 15, 2024",
+      "chats": [
+        {
+          "ReX": [
+            "Hello Andrew, I am ReX. 😁",
+            "What aspect of your career would you like guidance on?"
+          ]
+        }
+      ],
+      "isSessionEnded": true
+    },
+    {
+      "id": "3",
+      "date": "Feb 15, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "id": "4",
+      "date": "Feb 15, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "id": "5",
+      "date": "Feb 15, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
       "id": "6",
-      "date": "Jan 25, 2024",
+      "date": "Feb 15, 2024",
+      "chats": [
+        {
+          "ReX": [
+            "Hello Andrew, I am ReX. 😁",
+            "What aspect of your career would you like guidance on?"
+          ]
+        }
+      ],
+      "isSessionEnded": true
+    },
+    {
+      "id": "7",
+      "date": "Feb 15, 2024",
       "chats": [],
       "isSessionEnded": true
     },
     {
       "id": "8",
-      "date": "Feb 3, 2024",
-      "chats": [],
+      "date": "Feb 15, 2024",
+      "chats": [
+        {
+          "ReX": [
+            "Hello Andrew, I am ReX. 😁",
+            "What aspect of your career would you like guidance on?"
+          ]
+        }
+      ],
       "isSessionEnded": true
     },
     {
       "id": "9",
-      "date": "Feb 9, 2024",
+      "date": "Feb 15, 2024",
       "chats": [
         {
           "ReX": [
@@ -27,36 +99,178 @@
     },
     {
       "id": "10",
-      "date": "Feb 13, 2024",
+      "date": "Feb 15, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "id": "11",
+      "date": "Feb 15, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "id": "12",
+      "date": "Feb 15, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "id": "13",
+      "date": "Feb 15, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "id": "14",
+      "date": "Feb 15, 2024",
       "chats": [
         {
           "ReX": [
             "Hello Andrew, I am ReX. 😁",
             "What aspect of your career would you like guidance on?"
           ]
-        },
-        {
-          "user": "Hi I would like to change my career. Please give me how to transition to a new career.",
-          "ReX": ""
-        },
-        {
-          "user": "",
-          "ReX": "Based on our previous conversations, I understand that you are considering a career change. It's important to first identify your strengths, skills, and interests. Then, explore different industries and job roles that align with those. Consider networking, informational interviews, or even exploring internship opportunities to gain insight into your desired field. Additionally, seek out professional development opportunities and consider updating your skills through online courses or attending workshops. Remember, career paths can be dynamic, so be open to adapting and embracing new opportunities along the"
-        },
-        {
-          "user": "Hi please give me advice on how to transition my career.",
-          "ReX": "Hello! How can I assist you today with your career?"
-        },
-        {
-          "user": "I would like to change my career from Animation to software development.",
-          "ReX": "It's great to see you again! Based on our previous conversations, it seems like you have a strong interest in pursuing a career in technology. To further develop your skills and knowledge, I recommend exploring online courses or attending workshops in your desired field. Networking with professionals in the industry can also be beneficial for gaining insight and potential job opportunities. Additionally, consider seeking internships or entry-level positions to gain hands-on experience. Remember to always stay updated on the latest industry trends and technologies to remain competitive."
-        },
-        {
-          "user": "Thank you!",
-          "ReX": "Hi there! How can I assist you with your career today? Remember, I'm here to help guide you towards making the best professional decisions for yourself. Just let me know what aspect of your career you'd like advice on, and I'll do my best to provide you with some valuable input."
         }
       ],
-      "isSessionEnded": false
+      "isSessionEnded": true
+    },
+    {
+      "id": "15",
+      "date": "Feb 15, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "id": "16",
+      "date": "Feb 15, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "id": "17",
+      "date": "Feb 15, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "id": "18",
+      "date": "Feb 15, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "id": "19",
+      "date": "Feb 15, 2024",
+      "chats": [
+        {
+          "ReX": [
+            "Hello Andrew, I am ReX. 😁",
+            "What aspect of your career would you like guidance on?"
+          ]
+        }
+      ],
+      "isSessionEnded": true
+    },
+    {
+      "id": "20",
+      "date": "Feb 15, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "id": "21",
+      "date": "Feb 15, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "id": "22",
+      "date": "Feb 15, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "id": "23",
+      "date": "Feb 15, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "id": "24",
+      "date": "Feb 15, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "isSessionEnded": true,
+      "id": "25"
+    },
+    {
+      "id": "26",
+      "date": "Feb 16, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "chats": [],
+      "id": "27",
+      "isSessionEnded": true
+    },
+    {
+      "isSessionEnded": true,
+      "id": "28"
+    },
+    {
+      "isSessionEnded": true,
+      "id": "29"
+    },
+    {
+      "isSessionEnded": true,
+      "id": "30"
+    },
+    {
+      "chats": [],
+      "isSessionEnded": true,
+      "id": "31"
+    },
+    {
+      "chats": [],
+      "isSessionEnded": true,
+      "id": "32"
+    },
+    {
+      "chats": [],
+      "isSessionEnded": true,
+      "id": "33"
+    },
+    {
+      "id": "34",
+      "date": "Feb 16, 2024",
+      "isSessionEnded": true
+    },
+    {
+      "id": "35",
+      "date": "Feb 16, 2024",
+      "isSessionEnded": true
+    },
+    {
+      "id": "36",
+      "date": "Feb 16, 2024",
+      "chats": [],
+      "isSessionEnded": true
+    },
+    {
+      "id": "37",
+      "date": "Feb 16, 2024",
+      "chats": [
+        {
+          "ReX": [
+            "Hello Andrew, I am ReX. 😁",
+            "What aspect of your career would you like guidance on?"
+          ]
+        }
+      ],
+      "isSessionEnded": true
     }
   ]
 }

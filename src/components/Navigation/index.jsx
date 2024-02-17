@@ -1,5 +1,5 @@
 import { Grid, Button, Link, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AllStyles from "../../styles/home";
 import Images from "../../constants/images";
 import Menu from "@mui/material/Menu";
@@ -14,58 +14,65 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import chatHistoryStyles from "../../styles/chatHistory";
 
-function Navigation({ isChat, isEndedChats, isActvity }) {
+const Navigation = ({ isChat, isEndedChats, isActvity }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const [sessions, setSessions] = useState([]);
-  const [thisSession, setThisSession] = useState();
+  const [thisSession, setThisSession] = useState({});  
   const id = useParams();
+  const ID = id.id;
   const [opn, setOpn] = React.useState(false);
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
   const handlClose = () => {
     setOpn((prev) => !prev);
   };
 
-  const handleClickClose = async () => {
-    setOpn((prev) => !prev);
-    const ID = id.id;
+  const modifySession = async (key) => {
+    const date = new Date();
+    const month = date.getMonth();
+    const day = date.getDate();
+    const year = date.getFullYear();
+    const formattedDate = months[month] + " " + day + ", " + year;
+    let updatedSession = {};   
     const response = await api.get("/sessions");
-    setSessions(response.data);
-    setThisSession(...response.data.filter((session) => session.id == id.id));
-    thisSession.isSessionEnded = true;
-    const res = await api.put(`/sessions/${ID}`, thisSession);
-    setSessions(
-      sessions.map((session) => (session.id == id ? res.data : session))
-    );
-  };
-
+    setSessions(response.data)
+    let currentSession = {}
+    id ? currentSession = response.data.filter((session)=>session.id == ID) : currentSession={};
+    id ? updatedSession = {
+      id: ID,
+      date: formattedDate,
+      chats: key == "Clear" ? [] : (response.data.filter((session)=>session.id == ID)[0].chats),
+      isSessionEnded: key=="End" ? true : false
+    } : updatedSession = {};
+    console.log(updatedSession)
+    const res = await api.put(`/sessions/${ID}`, updatedSession);
+    setSessions(sessions.map(session => session.id == ID ? updatedSession : session))
+    window.location.reload();
+    console.log(res.data);    
+    setSessions(response.data.map(session => session.id == ID ? res.data : session));
+    setThisSession(res.data);
+  }
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = async (element) => {
     setAnchorEl(null);
-    if (element === "clear") {
-      try {
-        const ID = id.id;
-        const response = await api.get("/sessions");
-        setSessions(response.data);
-        setThisSession(
-          ...response.data.filter((session) => session.id == id.id)
-        );
-        thisSession.chats = [];
-        const res = await api.put(`/sessions/${ID}`, thisSession);
-        setSessions(
-          sessions.map((session) => (session.id == id ? res.data : session))
-        );
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(err);
-        }
-      }
+    if (element == "Clear") {
+      modifySession("Clear");
     } else if (element == "End") {
       setOpn(true);
     }
@@ -127,10 +134,10 @@ function Navigation({ isChat, isEndedChats, isActvity }) {
               {...AllStyles.optionsMenu}
             >
               <MenuItem
-                onClick={() => handleClose("clear")}
                 {...AllStyles.optonsMenuItem}
+                onClick={() => handleClose("Clear")}
               >
-                <img src={Images.Clear} alt="clear" />{" "}
+                <img src={Images.Clear} alt="clear" />
                 <Typography>&nbsp; Clear Chat</Typography>
               </MenuItem>
               <Divider variant="middle" />
@@ -138,7 +145,7 @@ function Navigation({ isChat, isEndedChats, isActvity }) {
                 onClick={() => handleClose("export")}
                 {...AllStyles.optonsMenuItem}
               >
-                <img src={Images.Export} alt="export" />{" "}
+                <img src={Images.Export} alt="export" />
                 <Typography>&nbsp; Export Chat</Typography>
               </MenuItem>
               <Divider variant="middle" />
@@ -189,7 +196,7 @@ function Navigation({ isChat, isEndedChats, isActvity }) {
           <Grid container {...chatHistoryStyles.popUpButtons}>
             <Grid item>
               <Button
-                onClick={handleClickClose}
+                onClick={() => modifySession("End")}
                 {...chatHistoryStyles.buttonDelete}
               >
                 Yes, End
